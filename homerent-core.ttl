@@ -6,7 +6,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix time: <https://www.w3.org/TR/owl-time/> .
 @base <https://purl.org/homerent/> .
 
 <https://purl.org/homerent/> rdf:type owl:Ontology ;
