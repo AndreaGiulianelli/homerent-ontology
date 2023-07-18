@@ -1,5 +1,6 @@
 @prefix : <https://purl.org/homerent/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix gn: <https://www.geonames.org/ontology#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -62,6 +63,46 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  https://purl.org/homerent/geoName
+:geoName rdf:type owl:ObjectProperty ,
+                  owl:FunctionalProperty ;
+         rdfs:range gn:Feature ;
+         rdfs:comment "Questa proprietà permette di collegare un indirizzo alla posizione esatta espressa come feature geoname."@it ,
+                      "This property allows to link an address to the exact location expressed as a geoname feature."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "geo name"@en .
+
+
+###  https://purl.org/homerent/hasAppliance
+:hasAppliance rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasFeature ;
+              rdfs:comment "Questa proprietà permette di mettere in relazione l'appartamento con gli elettrodomestici presenti al suo interno."@it ,
+                           "This property allows to link an apartment to the appliance inside it."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "ha elettrodomestico"@it ,
+                         "has appliance"@en .
+
+
+###  https://purl.org/homerent/hasFeature
+:hasFeature rdf:type owl:ObjectProperty ;
+            rdfs:domain schema:Apartment ;
+            rdfs:comment "Questa proprietà collega un appartamento alle funzionalità messe a disposizione."@it ,
+                         "This property links an apartment to its features."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "ha funzionalità"@it ,
+                       "has feature"@en .
+
+
+###  https://purl.org/homerent/hasFloorType
+:hasFloorType rdf:type owl:ObjectProperty ;
+              rdfs:domain schema:Apartment ;
+              rdfs:comment "Questa proprietà è necessaria per specificare il tipo di pavimento di un appartamento."@it ,
+                           "This property is necessary to specify the floor type of an apartment."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "floor type"@en ,
+                         "tipo di pavimento"@it .
+
+
 ###  https://purl.org/homerent/hasGeneratedInterest
 :hasGeneratedInterest rdf:type owl:ObjectProperty ;
                       owl:inverseOf :refersRentAd ;
@@ -82,6 +123,27 @@ foaf:surname rdf:type owl:AnnotationProperty .
                           "è interessato a"@it .
 
 
+###  https://purl.org/homerent/hasService
+:hasService rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasFeature ;
+            rdfs:comment "Questa proprietà permette di mettere in relazione un appartamento con i servizi messi a disposizione."@it ,
+                         "This property allows to link an apartment with the services that are provided."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "fornisce servizio"@it ,
+                       "has service"@en .
+
+
+###  https://purl.org/homerent/isAvailableFor
+:isAvailableFor rdf:type owl:ObjectProperty ;
+                rdfs:domain schema:Apartment ;
+                rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueFloat> ;
+                rdfs:comment "Questa proprietà permette di specificare per quanto tempo l'appartamento è disponibile."@it ,
+                             "This property allows you to specify how long the apartment is available."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "is available for"@en ,
+                           "è disponibile per"@it .
+
+
 ###  https://purl.org/homerent/isOfInterestTo
 :isOfInterestTo rdf:type owl:ObjectProperty ;
                 rdfs:comment "Questa proprietà connette un interesse alla persona interessata."@it ,
@@ -89,6 +151,36 @@ foaf:surname rdf:type owl:AnnotationProperty .
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
                 rdfs:label "is of interest to"@en ,
                            "è di interesse per"@it .
+
+
+###  https://purl.org/homerent/isPossibleToReach
+:isPossibleToReach rdf:type owl:ObjectProperty ;
+                   owl:inverseOf :reachableFrom ;
+                   rdfs:domain schema:Apartment ;
+                   rdfs:comment "Questa proprietà collega un appartamento con i punti strategici che si possono raggiungere."@it ,
+                                "This property connects an apartment to strategic points that can be reached."@en ;
+                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                   rdfs:label "is possible to reach"@en ,
+                              "è possibile raggiungere"@it .
+
+
+###  https://purl.org/homerent/priceComponent
+:priceComponent rdf:type owl:ObjectProperty ;
+                rdfs:range <http://purl.org/goodrelations/v1#UnitPriceSpecification> ;
+                rdfs:comment "Questa proprietà permette di specificare i componenti del prezzo."@it ,
+                             "This property allows to specify the price components."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "componente del prezzo"@it ,
+                           "price component"@en .
+
+
+###  https://purl.org/homerent/reachableFrom
+:reachableFrom rdf:type owl:ObjectProperty ;
+               rdfs:comment "Questa proprietà indica da quale appartamento il punto strategico è raggiungibile."@it ,
+                            "This property indicate from which apartment the stratetic point can be reached."@en ;
+               rdfs:isDefinedBy <https://purl.org/homerent/> ;
+               rdfs:label "raggiungibile da"@it ,
+                          "reachable from"@en .
 
 
 ###  https://purl.org/homerent/refersRentAd
@@ -102,11 +194,144 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 
 #################################################################
+#    Data properties
+#################################################################
+
+###  https://purl.org/homerent/busLine
+:busLine rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Questa proprietà permette di specificare la linea del bus della fermata."@it ,
+                      "This property allows to specify the bus line of the bus stop."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "bus line"@en ,
+                    "linea del bus"@it .
+
+
+###  https://purl.org/homerent/distanceInKm
+:distanceInKm rdf:type owl:DatatypeProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:range xsd:float ;
+              rdfs:comment "Questa proprietà permette di specificare la distanza in km da un punto strategico."@it ,
+                           "This property allows to specify the distance from a Strategic point in km."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "distance in km"@en ,
+                         "distanza in km"@it .
+
+
+###  https://purl.org/homerent/floorDescription
+:floorDescription rdf:type owl:DatatypeProperty ;
+                  rdfs:range xsd:string ;
+                  rdfs:comment "Questa proprietà permette di descrivere il tipo di pavimentazione presente in un appartamento."@it ,
+                               "This property allows to describe the type of the floor that is inside an apartment."@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "descrizione del tipo di pavimentazione"@it ,
+                             "floor description"@en .
+
+
+###  https://purl.org/homerent/isAvailableFrom
+:isAvailableFrom rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain schema:Apartment ;
+                 rdfs:range xsd:dateTime ;
+                 rdfs:comment "Questa proprietà è necessaria per indicare la data di inizio disponibilità di un appartamento."@it ,
+                              "This property is required to specify the availability start date of an apartment."@en ;
+                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                 rdfs:label "is available from"@en ,
+                            "è disponibile da"@it .
+
+
+###  https://purl.org/homerent/isFeatureUsageShared
+:isFeatureUsageShared rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
+                      rdfs:range xsd:boolean ;
+                      rdfs:comment "Questa proprietà indica se l'utilizzo della funzionalità è condiviso oppure no."@it ,
+                                   "This property specifies if the usage of the feature is shared or not."@en ;
+                      rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                      rdfs:label "is feature usage shared"@en ,
+                                 "l'utilizzo è condiviso?"@it .
+
+
+###  https://purl.org/homerent/isFurnished
+:isFurnished rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
+             rdfs:domain schema:Apartment ;
+             rdfs:range xsd:boolean ;
+             rdfs:comment "Questa proprietà indica se un appartamento è arredato."@it ,
+                          "This property indicates if an apartment is furnished."@en ;
+             rdfs:isDefinedBy <https://purl.org/homerent/> ;
+             rdfs:label "is furnished"@en ,
+                        "è arredata"@it .
+
+
+###  https://purl.org/homerent/isReadyToLive
+:isReadyToLive rdf:type owl:DatatypeProperty ,
+                        owl:FunctionalProperty ;
+               rdfs:domain schema:Apartment ;
+               rdfs:range xsd:boolean ;
+               rdfs:comment "Questa proprietà indica se un appartamento è pronto per abitarci."@it ,
+                            "This property indicate if an apartment is ready to live in."@en ;
+               rdfs:isDefinedBy <https://purl.org/homerent/> ;
+               rdfs:label "is ready to live"@en ,
+                          "è pronta per viverci"@it .
+
+
+###  https://purl.org/homerent/lastRenovationYear
+:lastRenovationYear rdf:type owl:DatatypeProperty ;
+                    rdfs:domain schema:Apartment ;
+                    rdfs:range xsd:integer ;
+                    rdfs:comment "Questa proprietà indica l'anno dell'ultima ristrotturazione."@it ,
+                                 "This property indicates the last renovation year."@en ;
+                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                    rdfs:label "anno dell'ultima ristrotturazione"@it ,
+                               "last renovation year"@en .
+
+
+###  https://purl.org/homerent/rentAdCode
+:rentAdCode rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:range xsd:string ;
+            rdfs:comment "Questa proprietà permette di specificare il codice dell'annuncio di affitto."@it ,
+                         "This property allows to specify the rent ad code."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "codice dell'annuncio di affitto"@it ,
+                       "rent ad code"@en .
+
+
+###  https://purl.org/homerent/serviceDescription
+:serviceDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:range xsd:string ;
+                    rdfs:comment "Questa proprietà permette di descrivere un servizio messo a disposizione nell'appartamento."@it ,
+                                 "This property allows to describe a service provided in the apartment."@en ;
+                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                    rdfs:label "descrizione del servizio"@it ,
+                               "service description"@en .
+
+
+###  https://purl.org/homerent/totalPrice
+:totalPrice rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
+            rdfs:range xsd:float ;
+            rdfs:comment "Questa proprietà permette di specificare il prezzo totale in un prezzo composto."@it ,
+                         "This property allows to specify the total price in a compound price."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "prezzo totale"@it ,
+                       "total price"@en .
+
+
+#################################################################
 #    Classes
 #################################################################
 
+###  http://schema.org/Apartment
+schema:Apartment rdf:type owl:Class .
+
+
 ###  http://xmlns.com/foaf/0.1/Person
 foaf:Person rdf:type owl:Class .
+
+
+###  https://www.geonames.org/ontology#Feature
+gn:Feature rdf:type owl:Class .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
