@@ -76,6 +76,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/hasAppliance
 :hasAppliance rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :hasFeature ;
+              owl:propertyDisjointWith :hasService ;
               rdfs:comment "Questa proprietà permette di mettere in relazione l'appartamento con gli elettrodomestici presenti al suo interno."@it ,
                            "This property allows to link an apartment to the appliance inside it."@en ;
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -135,6 +136,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 ###  https://purl.org/homerent/isAvailableFor
 :isAvailableFor rdf:type owl:ObjectProperty ;
+                owl:propertyDisjointWith schema:floorSize ;
                 rdfs:domain schema:Apartment ;
                 rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueFloat> ;
                 rdfs:comment "Questa proprietà permette di specificare per quanto tempo l'appartamento è disponibile."@it ,
