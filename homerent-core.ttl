@@ -1,32 +1,112 @@
 @prefix : <https://purl.org/homerent/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
-@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix schema: <http://schema.org/> .
 @base <https://purl.org/homerent/> .
 
 <https://purl.org/homerent/> rdf:type owl:Ontology ;
                               owl:imports <http://purl.org/goodrelations/v1> ;
                               dc:rights "This ontology is licensed under MIT" ;
-                              rdfs:label "HomeRent ontology"@en ;
-                              dct:creator [ a foaf:Person ;
-                                    foaf:name "Andrea";
-                                    foaf:surname "Giulianelli"] ;
+                              dct:creator [ rdf:type foaf:Person ;
+                                            foaf:name "Andrea" ;
+                                            foaf:surname "Giulianelli"
+                                          ] ;
                               dct:description """
                                 L'ontologia di HomeRent ha l'obiettivo principale di modellare il dominio degli affitti di appartamenti.
-                              """@it ;
-                              dct:description """
+                              """@it ,
+                                              """
                                 The HomeRent ontology has the main goal of modeling the apartment rental domain.
                               """@en ;
                               dct:license <https://opensource.org/license/mit/> ;
                               dct:title "HomeRent Ontology" ;
                               vann:preferredNamespacePrefix "hr" ;
+                              rdfs:label "HomeRent ontology"@en ;
                               owl:versionInfo "1.0.0" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/name
+foaf:name rdf:type owl:AnnotationProperty .
+
+
+###  http://xmlns.com/foaf/0.1/surname
+foaf:surname rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://purl.org/homerent/hasGeneratedInterest
+:hasGeneratedInterest rdf:type owl:ObjectProperty ;
+                      owl:inverseOf :refersRentAd ;
+                      rdfs:comment "Questa proprietà collega un annuncio di affitto all'interesse che genera."@it ,
+                                   "This property links a rental ad to the interest that it generates."@en ;
+                      rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                      rdfs:label "ha generato interesse"@it ,
+                                 "has generated interest"@en .
+
+
+###  https://purl.org/homerent/hasInterestIn
+:hasInterestIn rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isOfInterestTo ;
+               rdfs:comment "Questa proprietà è necessaria per connettere le persone con i loro interessi."@it ,
+                            "This property is needed to connect people to their interests."@en ;
+               rdfs:isDefinedBy <https://purl.org/homerent/> ;
+               rdfs:label "has interest in"@en ,
+                          "è interessato a"@it .
+
+
+###  https://purl.org/homerent/isOfInterestTo
+:isOfInterestTo rdf:type owl:ObjectProperty ;
+                rdfs:comment "Questa proprietà connette un interesse alla persona interessata."@it ,
+                             "This property connects an interest to the interested person."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "is of interest to"@en ,
+                           "è di interesse per"@it .
+
+
+###  https://purl.org/homerent/refersRentAd
+:refersRentAd rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:comment "Questa proprietà è necessaria per collegare un interesse all'annuncio di affitto a cui si riferisce."@it ,
+                           "This property is required to link an interest to the rental ad to which it refers."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "refers rent ad"@en ,
+                         "riferito al seguente annuncio di affitto"@it .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
