@@ -348,6 +348,13 @@ schema:Apartment rdf:type owl:Class .
 foaf:Person rdf:type owl:Class .
 
 
+###  https://purl.org/homerent/HomeRentEntity
+:HomeRentEntity rdf:type owl:Class ;
+                rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
+                             "This class includes all the classes defined under the HomeRent ontology."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> .
+
+
 ###  https://www.geonames.org/ontology#Feature
 gn:Feature rdf:type owl:Class .
 
