@@ -84,6 +84,18 @@ foaf:surname rdf:type owl:AnnotationProperty .
                          "has appliance"@en .
 
 
+###  https://purl.org/homerent/hasExpense
+:hasExpense rdf:type owl:ObjectProperty ;
+            owl:propertyChainAxiom ( <http://purl.org/goodrelations/v1#hasPriceSpecification>
+                                     :priceComponent
+                                   ) ;
+            rdfs:comment "Questa proprietà lega l'appartamento alle sue spese."@it ,
+                         "This property links the apartment to its expenses."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "ha spesa"@it ,
+                       "has expense"@en .
+
+
 ###  https://purl.org/homerent/hasFeature
 :hasFeature rdf:type owl:ObjectProperty ;
             rdfs:domain schema:Apartment ;
