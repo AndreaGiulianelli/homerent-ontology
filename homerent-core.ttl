@@ -375,6 +375,28 @@ foaf:Person rdf:type owl:Class .
                           "Prezzo composto"@it .
 
 
+###  https://purl.org/homerent/ElectricityPrice
+:ElectricityPrice rdf:type owl:Class ;
+                  rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                                  :HomeRentEntity ;
+                  rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'elettricità."@it ,
+                               "This unit price specification describe the price for the electricity."@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "Electricity price"@en ,
+                             "Prezzo dell'elettricità"@it .
+
+
+###  https://purl.org/homerent/HeatingPrice
+:HeatingPrice rdf:type owl:Class ;
+              rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                              :HomeRentEntity ;
+              rdfs:comment "Questa specifica di prezzo descrive il prezzo per il riscaldamento."@it ,
+                           "This unit price specification describe the price for the heating."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "Heating price"@en ,
+                         "Prezzo del riscaldamento"@it .
+
+
 ###  https://purl.org/homerent/HomeRentEntity
 :HomeRentEntity rdf:type owl:Class ;
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
@@ -408,6 +430,39 @@ foaf:Person rdf:type owl:Class .
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
                   rdfs:label "Interesse in un annuncio di affitto"@it ,
                              "Rental Ad Interest"@en .
+
+
+###  https://purl.org/homerent/RentalPrice
+:RentalPrice rdf:type owl:Class ;
+             rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                             :HomeRentEntity ;
+             rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'affitto dell'appartamento."@it ,
+                          "This unit price specification describe the price for the rent."@en ;
+             rdfs:isDefinedBy <https://purl.org/homerent/> ;
+             rdfs:label "Prezzo di affitto"@it ,
+                        "Rental Price"@en .
+
+
+###  https://purl.org/homerent/ServicePrice
+:ServicePrice rdf:type owl:Class ;
+              rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                              :HomeRentEntity ;
+              rdfs:comment "Questa specifica di prezzo descrive il prezzo per un servizio generale."@it ,
+                           "This unit price specification describe the price for a general service."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "Prezzo del servizio"@it ,
+                         "Service price"@en .
+
+
+###  https://purl.org/homerent/WaterPrice
+:WaterPrice rdf:type owl:Class ;
+            rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                            :HomeRentEntity ;
+            rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'acqua."@it ,
+                         "This unit price specification describe the price for the water."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "Prezzo dell'acqua"@it ,
+                       "Water price"@en .
 
 
 ###  https://www.geonames.org/ontology#Feature
