@@ -352,6 +352,17 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #    Classes
 #################################################################
 
+###  http://purl.org/goodrelations/v1#UnitPriceSpecification
+<http://purl.org/goodrelations/v1#UnitPriceSpecification> owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                owl:unionOf ( :ElectricityPrice
+                                                                                              :HeatingPrice
+                                                                                              :RentalPrice
+                                                                                              :ServicePrice
+                                                                                              :WaterPrice
+                                                                                            )
+                                                                              ] .
+
+
 ###  http://schema.org/Apartment
 schema:Apartment rdf:type owl:Class .
 
