@@ -344,6 +344,10 @@ foaf:surname rdf:type owl:AnnotationProperty .
 schema:Apartment rdf:type owl:Class .
 
 
+###  http://schema.org/Event
+schema:Event rdf:type owl:Class .
+
+
 ###  http://xmlns.com/foaf/0.1/Person
 foaf:Person rdf:type owl:Class .
 
@@ -353,6 +357,34 @@ foaf:Person rdf:type owl:Class .
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
                              "This class includes all the classes defined under the HomeRent ontology."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> .
+
+
+###  https://purl.org/homerent/RentalAd
+:RentalAd rdf:type owl:Class ;
+          rdfs:subClassOf <http://purl.org/goodrelations/v1#Offering> ,
+                          :HomeRentEntity ;
+          owl:hasKey ( :rentAdCode
+                     ) ;
+          rdfs:comment "Questa classe modella un annuncio di affitto."@it ,
+                       "This class models a rent ad."@en ;
+          rdfs:isDefinedBy <https://purl.org/homerent/> ;
+          rdfs:label "Annuncio di affitto"@it ,
+                     "Rental Ad"@en .
+
+
+###  https://purl.org/homerent/RentalAdInterest
+:RentalAdInterest rdf:type owl:Class ;
+                  rdfs:subClassOf schema:Event ,
+                                  :HomeRentEntity ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :isOfInterestTo ;
+                                    owl:someValuesFrom schema:Person
+                                  ] ;
+                  rdfs:comment "Questa classe modella l'interesse in un annuncio di un affitto."@it ,
+                               "This class models the interest in a rent ad."@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "Interesse in un annuncio di affitto"@it ,
+                             "Rental Ad Interest"@en .
 
 
 ###  https://www.geonames.org/ontology#Feature
