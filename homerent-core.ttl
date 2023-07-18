@@ -364,6 +364,17 @@ schema:Event rdf:type owl:Class .
 foaf:Person rdf:type owl:Class .
 
 
+###  https://purl.org/homerent/CompoundPrice
+:CompoundPrice rdf:type owl:Class ;
+               rdfs:subClassOf <http://purl.org/goodrelations/v1#PriceSpecification> ,
+                               :HomeRentEntity ;
+               rdfs:comment "A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption."@en ,
+                            "Una specifica di prezzo composto è quella che raggruppa più prezzi che si applicano tutti in combinazione per diverse dimensioni di consumo."@it ;
+               rdfs:isDefinedBy <https://purl.org/homerent/> ;
+               rdfs:label "Compound price"@en ,
+                          "Prezzo composto"@it .
+
+
 ###  https://purl.org/homerent/HomeRentEntity
 :HomeRentEntity rdf:type owl:Class ;
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
