@@ -766,6 +766,26 @@ foaf:Person rdf:type owl:Class .
                          "Prezzo del riscaldamento"@it .
 
 
+###  https://purl.org/homerent/HighInterestApartment
+:HighInterestApartment rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( schema:Apartment
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty :isApartmentIncluded ;
+                                                                    owl:someValuesFrom [ owl:intersectionOf ( :RentalAd
+                                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                                owl:onProperty :hasGeneratedInterest ;
+                                                                                                                owl:minCardinality "10"^^xsd:nonNegativeInteger
+                                                                                                              ]
+                                                                                                            ) ;
+                                                                                         rdf:type owl:Class
+                                                                                       ]
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf :HomeRentEntity .
+
+
 ###  https://purl.org/homerent/HomeRentEntity
 :HomeRentEntity rdf:type owl:Class ;
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
