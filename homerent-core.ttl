@@ -253,6 +253,11 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #    Data properties
 #################################################################
 
+###  http://schema.org/startDate
+schema:startDate rdf:type owl:DatatypeProperty ;
+                 owl:equivalentProperty :interestDateTime .
+
+
 ###  https://purl.org/homerent/busLine
 :busLine rdf:type owl:DatatypeProperty ;
          rdfs:range xsd:string ;
@@ -282,6 +287,17 @@ foaf:surname rdf:type owl:AnnotationProperty .
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
                   rdfs:label "descrizione del tipo di pavimentazione"@it ,
                              "floor description"@en .
+
+
+###  https://purl.org/homerent/interestDateTime
+:interestDateTime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:comment "Questa proprietà modella la data e l'ora di un interesse ad annuncio di affitto."@it ,
+                               "This property models the date and the time of the interest in a rental ad."@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "data e ora dell'interesse"@it ,
+                             "interest date time"@en .
 
 
 ###  https://purl.org/homerent/isAvailableFrom
@@ -783,6 +799,14 @@ foaf:Person rdf:type owl:Class .
                                   [ rdf:type owl:Restriction ;
                                     owl:onProperty :isOfInterestTo ;
                                     owl:someValuesFrom schema:Person
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :refersRentAd ;
+                                    owl:someValuesFrom :RentalAd
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :interestDateTime ;
+                                    owl:someValuesFrom xsd:dateTime
                                   ] ;
                   rdfs:comment "Questa classe modella l'interesse in un annuncio di un affitto."@it ,
                                "This class models the interest in a rent ad."@en ;
@@ -971,20 +995,20 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :AirConditioner
-                :Dishwasher
-                :Dryer
-                :ElettricFan
-                :Freezer
-                :Fridge
-                :Microwave
-                :Oven
-                :Stove
-                :TV
-                :Vacuum
-                :WashingMachine
-              )
-] .
+   owl:members ( :AirConditioner
+                 :Dishwasher
+                 :Dryer
+                 :ElettricFan
+                 :Freezer
+                 :Fridge
+                 :Microwave
+                 :Oven
+                 :Stove
+                 :TV
+                 :Vacuum
+                 :WashingMachine
+               )
+ ] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
