@@ -278,6 +278,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 
 ###  https://purl.org/homerent/busLine
 :busLine rdf:type owl:DatatypeProperty ;
+         rdfs:domain schema:BusStop ;
          rdfs:range xsd:string ;
          rdfs:comment "Questa proprietà permette di specificare la linea del bus della fermata."@it ,
                       "This property allows to specify the bus line of the bus stop."@en ;
@@ -289,6 +290,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/distanceInKm
 :distanceInKm rdf:type owl:DatatypeProperty ,
                        owl:FunctionalProperty ;
+              rdfs:domain :StrategicPoint ;
               rdfs:range xsd:float ;
               rdfs:comment "Questa proprietà permette di specificare la distanza in km da un punto strategico."@it ,
                            "This property allows to specify the distance from a Strategic point in km."@en ;
@@ -299,6 +301,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 
 ###  https://purl.org/homerent/floorDescription
 :floorDescription rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :FloorType ;
                   rdfs:range xsd:string ;
                   rdfs:comment "Questa proprietà permette di descrivere il tipo di pavimentazione presente in un appartamento."@it ,
                                "This property allows to describe the type of the floor that is inside an apartment."@en ;
@@ -311,6 +314,8 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 :interestDateTime rdf:type owl:DatatypeProperty ;
                   rdfs:subPropertyOf owl:topDataProperty ;
                   rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :RentalAdInterest ;
+                  rdfs:range xsd:dateTime ;
                   rdfs:comment "Questa proprietà modella la data e l'ora di un interesse ad annuncio di affitto."@it ,
                                "This property models the date and the time of the interest in a rental ad."@en ;
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -333,6 +338,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/isFeatureUsageShared
 :isFeatureUsageShared rdf:type owl:DatatypeProperty ,
                                owl:FunctionalProperty ;
+                      rdfs:domain :Feature ;
                       rdfs:range xsd:boolean ;
                       rdfs:comment "Questa proprietà indica se l'utilizzo della funzionalità è condiviso oppure no."@it ,
                                    "This property specifies if the usage of the feature is shared or not."@en ;
@@ -379,6 +385,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/rentAdCode
 :rentAdCode rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
+            rdfs:domain :RentalAd ;
             rdfs:range xsd:string ;
             rdfs:comment "Questa proprietà permette di specificare il codice dell'annuncio di affitto."@it ,
                          "This property allows to specify the rent ad code."@en ;
@@ -389,6 +396,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 
 ###  https://purl.org/homerent/serviceDescription
 :serviceDescription rdf:type owl:DatatypeProperty ;
+                    rdfs:domain :ServicePrice ;
                     rdfs:range xsd:string ;
                     rdfs:comment "Questa proprietà permette di descrivere un servizio messo a disposizione nell'appartamento."@it ,
                                  "This property allows to describe a service provided in the apartment."@en ;
@@ -400,6 +408,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/totalPrice
 :totalPrice rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
+            rdfs:domain :CompoundPrice ;
             rdfs:range xsd:float ;
             rdfs:comment "Questa proprietà permette di specificare il prezzo totale in un prezzo composto."@it ,
                          "This property allows to specify the total price in a compound price."@en ;
