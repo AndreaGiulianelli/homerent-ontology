@@ -432,7 +432,8 @@ schema:BusStop rdf:type owl:Class ;
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :busLine ;
                                  owl:someValuesFrom xsd:string
-                               ] .
+                               ] ;
+               owl:disjointWith schema:TrainStation .
 
 
 ###  http://schema.org/CollegeOrUniversity
@@ -1009,6 +1010,19 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( schema:CollegeOrUniversity
+                schema:ExerciseGym
+                schema:Hospital
+                schema:Museum
+                schema:Pharmacy
+                :PublicTransport
+                :SharedMobility
+                :Supermarket
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( :AirConditioner
                 :Dishwasher
                 :Dryer
@@ -1033,6 +1047,14 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                 :Kitchen
                 :Lift
                 :ParkingSpace
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BikeSharing
+                :CarSharing
+                :ScooterSharing
               )
 ] .
 
