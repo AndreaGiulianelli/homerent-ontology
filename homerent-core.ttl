@@ -71,6 +71,10 @@ foaf:surname rdf:type owl:AnnotationProperty .
 <http://purl.org/goodrelations/v1#offers> owl:inverseOf :isOfferedBy .
 
 
+###  http://schema.org/photo
+schema:photo rdf:type owl:ObjectProperty .
+
+
 ###  https://purl.org/homerent/geoName
 :geoName rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
@@ -157,6 +161,20 @@ foaf:surname rdf:type owl:AnnotationProperty .
             rdfs:isDefinedBy <https://purl.org/homerent/> ;
             rdfs:label "fornisce servizio"@it ,
                        "has service"@en .
+
+
+###  https://purl.org/homerent/housePlanPhoto
+:housePlanPhoto rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf schema:photo ,
+                                   owl:topObjectProperty ;
+                rdf:type owl:FunctionalProperty ;
+                rdfs:domain schema:Apartment ;
+                rdfs:range schema:ImageObject ;
+                rdfs:comment "Questa proprietà permette di specificare la foto della planimetria dell'appartamento."@it ,
+                             "This property allows to specify the house plan photo of the apartment."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "foto della planimetria"@it ,
+                           "house plan photo"@en .
 
 
 ###  https://purl.org/homerent/isApartmentIncluded
@@ -479,6 +497,10 @@ schema:ExerciseGym rdf:type owl:Class ;
 ###  http://schema.org/Hospital
 schema:Hospital rdf:type owl:Class ;
                 rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/ImageObject
+schema:ImageObject rdf:type owl:Class .
 
 
 ###  http://schema.org/Museum
