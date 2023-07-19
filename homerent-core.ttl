@@ -367,12 +367,67 @@ foaf:surname rdf:type owl:AnnotationProperty .
 schema:Apartment rdf:type owl:Class .
 
 
+###  http://schema.org/BusStop
+schema:BusStop rdf:type owl:Class ;
+               rdfs:subClassOf :PublicTransport .
+
+
+###  http://schema.org/CollegeOrUniversity
+schema:CollegeOrUniversity rdf:type owl:Class ;
+                           rdfs:subClassOf :ReachablePlace .
+
+
 ###  http://schema.org/Event
 schema:Event rdf:type owl:Class .
 
 
+###  http://schema.org/ExerciseGym
+schema:ExerciseGym rdf:type owl:Class ;
+                   rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/Hospital
+schema:Hospital rdf:type owl:Class ;
+                rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/Museum
+schema:Museum rdf:type owl:Class ;
+              rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/Pharmacy
+schema:Pharmacy rdf:type owl:Class ;
+                rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/TrainStation
+schema:TrainStation rdf:type owl:Class ;
+                    rdfs:subClassOf :PublicTransport .
+
+
 ###  http://xmlns.com/foaf/0.1/Person
 foaf:Person rdf:type owl:Class .
+
+
+###  https://purl.org/homerent/BikeSharing
+:BikeSharing rdf:type owl:Class ;
+             rdfs:subClassOf :SharedMobility ;
+             rdfs:comment "Questa classe modella il servizio di condivisione delle bici."@it ,
+                          "This class models the bike sharing service."@en ;
+             rdfs:isDefinedBy <https://purl.org/homerent/> ;
+             rdfs:label "Bici in condivisione"@it ,
+                        "Bike sharing"@en .
+
+
+###  https://purl.org/homerent/CarSharing
+:CarSharing rdf:type owl:Class ;
+            rdfs:subClassOf :SharedMobility ;
+            rdfs:comment "Questa classe modella il servizio di condivisione della macchina."@it ,
+                         "This class models the service of car sharing."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "Car sharing"@en ,
+                       "Macchina in condivisione"@it .
 
 
 ###  https://purl.org/homerent/CompoundPrice
@@ -399,8 +454,16 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/FloorType
 :FloorType rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:oneOf ( :CeramicFloor
+                                             :LaminateFloor
+                                             :ParquetFloor
+                                             :PorcelainStoneWareFloor
+                                             :PvcFloor
+                                             :ResinFloor
+                                           )
+                               ] ;
            rdfs:subClassOf :HomeRentEntity ;
-           owl:oneOf (:CeramicFloor :LaminateFloor :ParquetFloor :PorcelainStoneWareFloor :PvcFloor :ResinFloor) ;
            rdfs:comment "Questa classe modella il tipo di pavimentazione presente negli appartamenti."@it ,
                         "This class models the types of floor inside an apartment."@en ;
            rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -424,6 +487,26 @@ foaf:Person rdf:type owl:Class .
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
                              "This class includes all the classes defined under the HomeRent ontology."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> .
+
+
+###  https://purl.org/homerent/PublicTransport
+:PublicTransport rdf:type owl:Class ;
+                 rdfs:subClassOf :ReachablePlace ;
+                 rdfs:comment "Questa classe funge da superclasse per i servizi di trasporto pubblico."@it ,
+                              "This class acts as a superclass for the public transport services."@en ;
+                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                 rdfs:label "Public transport"@en ,
+                            "Trasporto pubblico"@it .
+
+
+###  https://purl.org/homerent/ReachablePlace
+:ReachablePlace rdf:type owl:Class ;
+                rdfs:subClassOf :HomeRentEntity ;
+                rdfs:comment "Questa classe modella un luogo nella città."@it ,
+                             "This class models a place inside the city."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Luogo raggiungibile"@it ,
+                           "Reachable place"@en .
 
 
 ###  https://purl.org/homerent/RentalAd
@@ -465,6 +548,16 @@ foaf:Person rdf:type owl:Class .
                         "Rental Price"@en .
 
 
+###  https://purl.org/homerent/ScooterSharing
+:ScooterSharing rdf:type owl:Class ;
+                rdfs:subClassOf :SharedMobility ;
+                rdfs:comment "Questa classe modella il servizio di condivisione dei monopattini."@it ,
+                             "This class models the scooter sharing service."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Monopattini in condivisione"@it ,
+                           "Scooter sharing"@en .
+
+
 ###  https://purl.org/homerent/ServicePrice
 :ServicePrice rdf:type owl:Class ;
               rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
@@ -474,6 +567,36 @@ foaf:Person rdf:type owl:Class .
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
               rdfs:label "Prezzo del servizio"@it ,
                          "Service price"@en .
+
+
+###  https://purl.org/homerent/SharedMobility
+:SharedMobility rdf:type owl:Class ;
+                rdfs:subClassOf :ReachablePlace ;
+                rdfs:comment "Questa classe funge da superclasse per i servizi di mobilità condivisa."@it ,
+                             "This class acts as a superclass for the shared mobility services."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Mobilità condivisa"@it ,
+                           "Shared mobility"@en .
+
+
+###  https://purl.org/homerent/StrategicPoint
+:StrategicPoint rdf:type owl:Class ;
+                rdfs:subClassOf :HomeRentEntity ;
+                rdfs:comment "Questa classe modella un punto strategico che può essere raggiunto dall'appartamento."@it ,
+                             "This class models a strategic point that can be reached from the apartment."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Punto strategico"@it ,
+                           "Strategic point"@en .
+
+
+###  https://purl.org/homerent/Supermarket
+:Supermarket rdf:type owl:Class ;
+             rdfs:subClassOf :ReachablePlace ;
+             rdfs:comment "Questa class modella un supermercato."@it ,
+                          "This class models a supermarket."@en ;
+             rdfs:isDefinedBy <https://purl.org/homerent/> ;
+             rdfs:label "Supermarket"@en ,
+                        "Supermercato"@it .
 
 
 ###  https://purl.org/homerent/WaterPrice
