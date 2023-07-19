@@ -294,9 +294,8 @@ schema:photo rdf:type owl:ObjectProperty .
 #################################################################
 
 ###  http://schema.org/numberOfRooms
-schema:numberOfRooms rdf:type owl:DatatypeProperty ;
-                     rdfs:subPropertyOf owl:topDataProperty ;
-                     rdf:type owl:FunctionalProperty ;
+schema:numberOfRooms rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
                      rdfs:domain schema:Apartment ;
                      rdfs:range xsd:float .
 
@@ -717,7 +716,8 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/FourRoomApartment
 :FourRoomApartment rdf:type owl:Class ;
-                   rdfs:subClassOf schema:Apartment ;
+                   rdfs:subClassOf schema:Apartment ,
+                                   :HomeRentEntity ;
                    rdfs:comment "Questa sottoclasse di schema:Apartment modella un quadrilocale. Esso è un appartamento composto da quattro locali. Viene considerato quadrilocale anche il caso di un appartamento da 3.5 locali"@it ,
                                 "This subclass of schema:Apartment models a four-room apartment. It is an apartment consisting of four rooms. The case of a 3.5-room apartment is also considered a four-room apartment"@en ;
                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -996,7 +996,8 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/StudioFlatApartment
 :StudioFlatApartment rdf:type owl:Class ;
-                     rdfs:subClassOf schema:Apartment ;
+                     rdfs:subClassOf schema:Apartment ,
+                                     :HomeRentEntity ;
                      rdfs:comment "Questa sottoclasse di schema:Apartment modella un monolocale. Esso è un appartamento composto da un solo locale."@it ,
                                   "This subclass of schema:Apartment models a studio flat apartment. So an apartment that has only one single room."@en ;
                      rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -1034,7 +1035,7 @@ foaf:Person rdf:type owl:Class .
                                                              ) ;
                                           rdf:type owl:Class
                                         ] ;
-                    rdfs:subClassOf schema:Apartment ;
+                    rdfs:subClassOf :HomeRentEntity ;
                     rdfs:comment "Questa è una sottoclasse dello schema:Apartment che modella un appartamento disponibile temporaneamente."@it ,
                                  "This is a subclass of schema:Apartment which models a temporarily available apartment."@en ;
                     rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -1044,7 +1045,8 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/ThreeRoomApartment
 :ThreeRoomApartment rdf:type owl:Class ;
-                    rdfs:subClassOf schema:Apartment ;
+                    rdfs:subClassOf schema:Apartment ,
+                                    :HomeRentEntity ;
                     rdfs:comment "Questa sottoclasse di schema:Apartment modella un trilocale. Esso è un appartamento composto da tre locali. Viene considerato trilocale anche il caso di un appartamento da 2.5 locali"@it ,
                                  "This subclass of schema:Apartment models a three-room apartment. It is an apartment consisting of three rooms. The case of a 2.5-room apartment is also considered a three-room apartment"@en ;
                     rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -1054,7 +1056,8 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/TwoRoomApartment
 :TwoRoomApartment rdf:type owl:Class ;
-                  rdfs:subClassOf schema:Apartment ;
+                  rdfs:subClassOf schema:Apartment ,
+                                  :HomeRentEntity ;
                   rdfs:comment "Questa sottoclasse di schema:Apartment modella un bilocale. Esso è un appartamento composto da due locali. Viene considerato bilocale anche il caso di un appartamento da 1.5 locali"@it ,
                                "This subclass of schema:Apartment models a two-room apartment. It is an apartment consisting of two rooms. The case of a 1.5-room apartment is also considered a two-room apartment"@en ;
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -1106,19 +1109,19 @@ gn:Feature rdf:type owl:Class .
                        :FloorType ;
               :floorDescription """Ceramic floor tiles are durable, versatile, and aesthetically pleasing flooring materials made from clay and other natural substances.
 They come in a variety of colors, patterns, and textures, allowing for numerous design options to suit different styles and preferences.
-Ceramic tiles are highly resistant to wear, moisture, and stains, making them suitable for high-traffic areas and easy to maintain with regular cleaning."""@en .
+Ceramic tiles are highly resistant to wear, moisture, and stains, making them suitable for high-traffic areas and easy to maintain with regular cleaning.""" .
 
 
 ###  https://purl.org/homerent/LaminateFloor
 :LaminateFloor rdf:type owl:NamedIndividual ,
                         :FloorType ;
-               :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer."@en .
+               :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer." .
 
 
 ###  https://purl.org/homerent/ParquetFloor
 :ParquetFloor rdf:type owl:NamedIndividual ,
                        :FloorType ;
-              :floorDescription "Parquet is a type of wood flooring made by arranging small slats of wood in distinct, repeating patterns. While traditional parquet floors were installed one piece at a time, most modern parquet comes in tile form in which the wood slats are bonded to a backing material."@en .
+              :floorDescription "Parquet is a type of wood flooring made by arranging small slats of wood in distinct, repeating patterns. While traditional parquet floors were installed one piece at a time, most modern parquet comes in tile form in which the wood slats are bonded to a backing material." .
 
 
 ###  https://purl.org/homerent/PorcelainStoneWareFloor
@@ -1126,7 +1129,7 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
                                   :FloorType ;
                          :floorDescription """Porcelain stoneware floor is a type of ceramic tile that is extremely dense and durable, made from a specific type of clay fired at very high temperatures.
 It is highly resistant to wear, scratches, stains, and moisture, making it suitable for both indoor and outdoor use, including high-traffic areas and areas prone to water exposure such as bathrooms and kitchens.
-Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and sizes, and can replicate the look of natural materials such as stone, concrete, or wood. They offer a combination of aesthetic appeal and practicality, making them a popular choice for residential and commercial spaces."""@en .
+Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and sizes, and can replicate the look of natural materials such as stone, concrete, or wood. They offer a combination of aesthetic appeal and practicality, making them a popular choice for residential and commercial spaces.""" .
 
 
 ###  https://purl.org/homerent/PvcFloor
@@ -1134,7 +1137,7 @@ Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and 
                    :FloorType ;
           :floorDescription """PVC flooring is a type of flooring made from polyvinyl chloride, a synthetic plastic.
 It is moisture-resistant, scratch-resistant, and stain-resistant, making it a good choice for high-traffic areas.
-PVC flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
+PVC flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home.""" .
 
 
 ###  https://purl.org/homerent/ResinFloor
@@ -1142,7 +1145,7 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
                      :FloorType ;
             :floorDescription """Resin flooring is a type of flooring made from epoxy resin or polyurethane resin.
 It is durable, water-resistant, and chemical-resistant, making it a good choice for high-traffic areas.
-Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
+Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home.""" .
 
 
 #################################################################
@@ -1263,7 +1266,13 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                                                                ]
                                                     ]
                                          ] ;
-   <http://www.w3.org/2003/11/swrl#head> rdf:nil
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :StudioFlatApartment ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :x
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
@@ -1308,7 +1317,13 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                                                                ]
                                                     ]
                                          ] ;
-   <http://www.w3.org/2003/11/swrl#head> rdf:nil
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :TwoRoomApartment ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :x
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
@@ -1353,7 +1368,13 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                                                                ]
                                                     ]
                                          ] ;
-   <http://www.w3.org/2003/11/swrl#head> rdf:nil
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :ThreeRoomApartment ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :x
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
  ] .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
@@ -1398,7 +1419,13 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                                                                ]
                                                     ]
                                          ] ;
-   <http://www.w3.org/2003/11/swrl#head> rdf:nil
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :FourRoomApartment ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :x
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
  ] .
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
