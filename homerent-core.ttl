@@ -410,6 +410,46 @@ schema:TrainStation rdf:type owl:Class ;
 foaf:Person rdf:type owl:Class .
 
 
+###  https://purl.org/homerent/AirConditioner
+:AirConditioner rdf:type owl:Class ;
+                rdfs:subClassOf :Appliance ;
+                rdfs:comment "Questa classe modella l'aria condizionata."@it ,
+                             "This class models the air conditioner."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Aria condizionata"@it ,
+                            "Air conditioner"@en .
+
+
+###  https://purl.org/homerent/Appliance
+:Appliance rdf:type owl:Class ;
+           rdfs:subClassOf :Feature ;
+           rdfs:comment "Questa classe funge da superclasse per gli elettrodomestici presenti nell'appartamento."@it ,
+                        "This class act as a superclass for all the appliances inside the apartment."@en ;
+           rdfs:isDefinedBy <https://purl.org/homerent/> ;
+           rdfs:label "Appliance"@en ,
+                      "Elettrodomestico"@it .
+
+
+###  https://purl.org/homerent/Balcony
+:Balcony rdf:type owl:Class ;
+         rdfs:subClassOf :Service ;
+         rdfs:comment "Questa classe modella la presenza di un balcone nell'appartamento"@it ,
+                      "This class models the presence of a balcony in the apartment."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "Balcone"@it ,
+                    "Balcony"@en .
+
+
+###  https://purl.org/homerent/Bathroom
+:Bathroom rdf:type owl:Class ;
+          rdfs:subClassOf :Service ;
+          rdfs:comment "Questa classe modella la presenza di un bagno"@it ,
+                       "This class models the presence of a bathroom."@en ;
+          rdfs:isDefinedBy <https://purl.org/homerent/> ;
+          rdfs:label "Bagno"@it ,
+                     "Bathroom"@en .
+
+
 ###  https://purl.org/homerent/BikeSharing
 :BikeSharing rdf:type owl:Class ;
              rdfs:subClassOf :SharedMobility ;
@@ -441,6 +481,26 @@ foaf:Person rdf:type owl:Class .
                           "Prezzo composto"@it .
 
 
+###  https://purl.org/homerent/Dishwasher
+:Dishwasher rdf:type owl:Class ;
+            rdfs:subClassOf :Appliance ;
+            rdfs:comment "Questa classe modella una lavastoviglie utilizzabile all'interno dell'appartamento."@it ,
+                         "This class models a dishwasher that can be used inside the apartment."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "Lavastoviglie"@it ,
+                       "Dishwasher"@en .
+
+
+###  https://purl.org/homerent/Dryer
+:Dryer rdf:type owl:Class ;
+       rdfs:subClassOf :Appliance ;
+       rdfs:comment "Questa classe modella un'asciugatrice utilizzabile all'interno dell'appartamento."@it ,
+                    "This class models a dryer that can be used inside the apartment."@en ;
+        rdfs:isDefinedBy <https://purl.org/homerent/> ;
+        rdfs:label "Asciugatrice"@it ,
+                   "Dryer"@en .
+
+
 ###  https://purl.org/homerent/ElectricityPrice
 :ElectricityPrice rdf:type owl:Class ;
                   rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
@@ -450,6 +510,31 @@ foaf:Person rdf:type owl:Class .
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
                   rdfs:label "Electricity price"@en ,
                              "Prezzo dell'elettricità"@it .
+
+
+###  https://purl.org/homerent/ElettricFan
+:ElectricFan rdf:type owl:Class ;
+             rdfs:subClassOf :Appliance ;
+             rdfs:comment "Questa classe modella un ventilatore utilizzabile all'interno dell'appartamento."@it ,
+                          "This class models an electric fan that can be used inside the apartment."@en ;
+             rdfs:isDefinedBy <https://purl.org/homerent/> ;
+             rdfs:label "Ventilatore"@it ,
+                        "Electric fan"@en .
+
+
+###  https://purl.org/homerent/Feature
+:Feature rdf:type owl:Class ;
+         owl:equivalentClass [ rdf:type owl:Class ;
+                               owl:unionOf ( :Appliance
+                                             :Service
+                                           )
+                             ] ;
+         rdfs:subClassOf :HomeRentEntity ;
+         rdfs:comment "Questa classe funge da superclasse per tutte le caratteristiche che possono caratterizzare un appartamento."@it ,
+                      "This class acts as a superclass for all characteristics that can characterize an apartment."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "Feature"@en ,
+                    "Funzionalità"@it .
 
 
 ###  https://purl.org/homerent/FloorType
@@ -471,6 +556,36 @@ foaf:Person rdf:type owl:Class .
                       "Tipo di pavimentazione"@it .
 
 
+###  https://purl.org/homerent/Freezer
+:Freezer rdf:type owl:Class ;
+         rdfs:subClassOf :Appliance ;
+         rdfs:comment "Questa classe modella un congelatore utilizzabile all'interno dell'appartamento."@it ,
+                      "This class models a freezer that can be used inside the apartment."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "Congelatore"@it ,
+                    "Freezer"@en .
+
+
+###  https://purl.org/homerent/Fridge
+:Fridge rdf:type owl:Class ;
+        rdfs:subClassOf :Appliance ;
+        rdfs:comment "Questa classe modella un frigo utilizzabile all'interno dell'appartamento."@it ,
+                     "This class models a fridge that can be used inside the apartment."@en ;
+        rdfs:isDefinedBy <https://purl.org/homerent/> ;
+        rdfs:label "Frigo"@it ,
+                   "Fridge"@en .
+
+
+###  https://purl.org/homerent/Garden
+:Garden rdf:type owl:Class ;
+        rdfs:subClassOf :Service ;
+        rdfs:comment "Questa classe modella la presenza di un giardino"@it ,
+                     "This class models the presence of a garden."@en ;
+        rdfs:isDefinedBy <https://purl.org/homerent/> ;
+        rdfs:label "Giardino"@it ,
+                   "Garden"@en .
+
+
 ###  https://purl.org/homerent/HeatingPrice
 :HeatingPrice rdf:type owl:Class ;
               rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
@@ -487,6 +602,66 @@ foaf:Person rdf:type owl:Class .
                 rdfs:comment "Questa classe include tutte le classi definite nell'ontologia HomeRent."@it ,
                              "This class includes all the classes defined under the HomeRent ontology."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> .
+
+
+###  https://purl.org/homerent/InternetAccess
+:InternetAccess rdf:type owl:Class ;
+                rdfs:subClassOf :Service ;
+                rdfs:comment "Questa classe modella la presenza dell'accesso ad Internet"@it ,
+                             "This class models the presence of the Internet access."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Accesso ad Internet"@it ,
+                           "Internet access"@en .
+
+
+###  https://purl.org/homerent/Kitchen
+:Kitchen rdf:type owl:Class ;
+         rdfs:subClassOf :Service ;
+         rdfs:comment "Questa classe modella la presenza di una cucina"@it ,
+                      "This class models the presence of a kitchen."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "Cucina"@it ,
+                    "Kitchen"@en .
+
+
+###  https://purl.org/homerent/Lift
+:Lift rdf:type owl:Class ;
+      rdfs:subClassOf :Service ;
+      rdfs:comment "Questa classe modella la presenza di un ascensore"@it ,
+                   "This class models the presence of a lift."@en ;
+      rdfs:isDefinedBy <https://purl.org/homerent/> ;
+      rdfs:label "Ascensore"@it ,
+                 "Lift"@en .
+
+
+###  https://purl.org/homerent/Microwave
+:Microwave rdf:type owl:Class ;
+           rdfs:subClassOf :Appliance ;
+           rdfs:comment "Questa classe modella un microonde utilizzabile all'interno dell'appartamento."@it ,
+                        "This class models a microwave that can be used inside the apartment."@en ;
+            rdfs:isDefinedBy <https://purl.org/homerent/> ;
+            rdfs:label "Microonde"@it ,
+                    "Microwave"@en .
+
+
+###  https://purl.org/homerent/Oven
+:Oven rdf:type owl:Class ;
+      rdfs:subClassOf :Appliance ;
+      rdfs:comment "Questa classe modella un forno utilizzabile all'interno dell'appartamento."@it ,
+                   "This class models an oven that can be used inside the apartment."@en ;
+      rdfs:isDefinedBy <https://purl.org/homerent/> ;
+      rdfs:label "Forno"@it ,
+                 "Oven"@en .
+
+
+###  https://purl.org/homerent/ParkingSpace
+:ParkingSpace rdf:type owl:Class ;
+              rdfs:subClassOf :Service ;
+              rdfs:comment "Questa classe modella la presenza di uno spazio per il parcheggio"@it ,
+                           "This class models the presence of a parking space."@en ;
+              rdfs:isDefinedBy <https://purl.org/homerent/> ;
+              rdfs:label "Spazio per parcheggio"@it ,
+                         "Parking space"@en .
 
 
 ###  https://purl.org/homerent/PublicTransport
@@ -558,6 +733,16 @@ foaf:Person rdf:type owl:Class .
                            "Scooter sharing"@en .
 
 
+###  https://purl.org/homerent/Service
+:Service rdf:type owl:Class ;
+         rdfs:subClassOf :Feature ;
+         rdfs:comment "Questa classe funge da superclasse per i servizi inclusi nell'appartamento."@it ,
+                      "This class act as a superclass for the services included with the apartment."@en ;
+         rdfs:isDefinedBy <https://purl.org/homerent/> ;
+         rdfs:label "Service"@en ,
+                    "Servizio"@it .
+
+
 ###  https://purl.org/homerent/ServicePrice
 :ServicePrice rdf:type owl:Class ;
               rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
@@ -579,6 +764,16 @@ foaf:Person rdf:type owl:Class .
                            "Shared mobility"@en .
 
 
+###  https://purl.org/homerent/Stove
+:Stove rdf:type owl:Class ;
+       rdfs:subClassOf :Appliance ;
+       rdfs:comment "Questa classe modella un piano cottura utilizzabile all'interno dell'appartamento."@it ,
+                    "This class models a stove that can be used inside the apartment."@en ;
+       rdfs:isDefinedBy <https://purl.org/homerent/> ;
+       rdfs:label "Piano cottura"@it ,
+                  "Stove"@en .
+
+
 ###  https://purl.org/homerent/StrategicPoint
 :StrategicPoint rdf:type owl:Class ;
                 rdfs:subClassOf :HomeRentEntity ;
@@ -597,6 +792,36 @@ foaf:Person rdf:type owl:Class .
              rdfs:isDefinedBy <https://purl.org/homerent/> ;
              rdfs:label "Supermarket"@en ,
                         "Supermercato"@it .
+
+
+###  https://purl.org/homerent/TV
+:TV rdf:type owl:Class ;
+    rdfs:subClassOf :Appliance ;
+    rdfs:comment "Questa classe modella una tv utilizzabile all'interno dell'appartamento."@it ,
+                "This class models a tv that can be used inside the apartment."@en ;
+    rdfs:isDefinedBy <https://purl.org/homerent/> ;
+    rdfs:label "TV"@it ,
+                "TV"@en .
+
+
+###  https://purl.org/homerent/Vacuum
+:Vacuum rdf:type owl:Class ;
+        rdfs:subClassOf :Appliance ;
+        rdfs:comment "Questa classe modella un'aspirapolvere utilizzabile all'interno dell'appartamento."@it ,
+                     "This class models a vacuum that can be used inside the apartment."@en ;
+        rdfs:isDefinedBy <https://purl.org/homerent/> ;
+        rdfs:label "Aspirapolvere"@it ,
+                   "Vacuum"@en .
+
+
+###  https://purl.org/homerent/WashingMachine
+:WashingMachine rdf:type owl:Class ;
+                rdfs:subClassOf :Appliance ;
+                rdfs:comment "Questa classe modella una lavatrice utilizzabile all'interno dell'appartamento."@it ,
+                             "This class models a washing machine that can be used inside the apartment."@en ;
+                rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                rdfs:label "Lavatrice"@it ,
+                           "Washing machine"@en .
 
 
 ###  https://purl.org/homerent/WaterPrice
@@ -660,6 +885,39 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
             :floorDescription """Resin flooring is a type of flooring made from epoxy resin or polyurethane resin.
 It is durable, water-resistant, and chemical-resistant, making it a good choice for high-traffic areas.
 Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AirConditioner
+                :Dishwasher
+                :Dryer
+                :ElettricFan
+                :Freezer
+                :Fridge
+                :Microwave
+                :Oven
+                :Stove
+                :TV
+                :Vacuum
+                :WashingMachine
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Balcony
+                :Bathroom
+                :Garden
+                :InternetAccess
+                :Kitchen
+                :Lift
+                :ParkingSpace
+              )
+] .
 
 
 ###  Generated by the OWL API (version 4.5.25.2023-02-15T19:15:49Z) https://github.com/owlcs/owlapi
