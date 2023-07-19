@@ -849,7 +849,11 @@ foaf:Person rdf:type owl:Class .
 ###  https://purl.org/homerent/ServicePrice
 :ServicePrice rdf:type owl:Class ;
               rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
-                              :HomeRentEntity ;
+                              :HomeRentEntity ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :serviceDescription ;
+                                owl:someValuesFrom xsd:string
+                              ] ;
               rdfs:comment "Questa specifica di prezzo descrive il prezzo per un servizio generale."@it ,
                            "This unit price specification describe the price for a general service."@en ;
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -995,20 +999,20 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-   owl:members ( :AirConditioner
-                 :Dishwasher
-                 :Dryer
-                 :ElettricFan
-                 :Freezer
-                 :Fridge
-                 :Microwave
-                 :Oven
-                 :Stove
-                 :TV
-                 :Vacuum
-                 :WashingMachine
-               )
- ] .
+  owl:members ( :AirConditioner
+                :Dishwasher
+                :Dryer
+                :ElettricFan
+                :Freezer
+                :Fridge
+                :Microwave
+                :Oven
+                :Stove
+                :TV
+                :Vacuum
+                :WashingMachine
+              )
+] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
