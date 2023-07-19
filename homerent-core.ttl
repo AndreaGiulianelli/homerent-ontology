@@ -589,10 +589,6 @@ foaf:Person rdf:type owl:Class .
                              "Prezzo dell'elettricità"@it .
 
 
-###  https://purl.org/homerent/ElettricFan
-:ElettricFan rdf:type owl:Class .
-
-
 ###  https://purl.org/homerent/Feature
 :Feature rdf:type owl:Class ;
          owl:equivalentClass [ rdf:type owl:Class ;
@@ -1015,7 +1011,7 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
   owl:members ( :AirConditioner
                 :Dishwasher
                 :Dryer
-                :ElettricFan
+                :ElectricFan
                 :Freezer
                 :Fridge
                 :Microwave
