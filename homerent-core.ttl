@@ -171,7 +171,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 
 ###  https://purl.org/homerent/isOfInterestTo
-:isOfInterestTo rdf:type owl:ObjectProperty ;
+:isOfInterestTo rdf:type owl:ObjectProperty ,
+                         owl:FunctionalProperty ;
                 rdfs:comment "Questa proprietà connette un interesse alla persona interessata."@it ,
                              "This property connects an interest to the interested person."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -748,7 +749,24 @@ foaf:Person rdf:type owl:Class .
 ###  https://purl.org/homerent/RentalAd
 :RentalAd rdf:type owl:Class ;
           rdfs:subClassOf <http://purl.org/goodrelations/v1#Offering> ,
-                          :HomeRentEntity ;
+                          :HomeRentEntity ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :isOfferedBy ;
+                            owl:someValuesFrom <http://purl.org/goodrelations/v1#BusinessEntity>
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://purl.org/goodrelations/v1#includes> ;
+                            owl:allValuesFrom schema:Apartment
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://purl.org/goodrelations/v1#hasPriceSpecification> ;
+                            owl:cardinality "1"^^xsd:nonNegativeInteger
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty <http://purl.org/goodrelations/v1#includes> ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass schema:Apartment
+                          ] ;
           owl:hasKey ( :rentAdCode
                      ) ;
           rdfs:comment "Questa classe modella un annuncio di affitto."@it ,
