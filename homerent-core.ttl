@@ -221,7 +221,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 
 ###  https://purl.org/homerent/reachableFrom
-:reachableFrom rdf:type owl:ObjectProperty ;
+:reachableFrom rdf:type owl:ObjectProperty ,
+                        owl:FunctionalProperty ;
                rdfs:comment "Questa proprietà indica da quale appartamento il punto strategico è raggiungibile."@it ,
                             "This property indicate from which apartment the stratetic point can be reached."@en ;
                rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -883,7 +884,19 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/StrategicPoint
 :StrategicPoint rdf:type owl:Class ;
-                rdfs:subClassOf :HomeRentEntity ;
+                rdfs:subClassOf :HomeRentEntity ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :reachableFrom ;
+                                  owl:someValuesFrom schema:Apartment
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :strategicPointRefersTo ;
+                                  owl:someValuesFrom :ReachablePlace
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :distanceInKm ;
+                                  owl:someValuesFrom xsd:float
+                                ] ;
                 rdfs:comment "Questa classe modella un punto strategico che può essere raggiunto dall'appartamento."@it ,
                              "This class models a strategic point that can be reached from the apartment."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
