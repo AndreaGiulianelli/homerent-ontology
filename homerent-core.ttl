@@ -467,7 +467,19 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 
 
 ###  http://schema.org/Apartment
-schema:Apartment rdf:type owl:Class .
+schema:Apartment rdf:type owl:Class ;
+                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isAvailableFrom ;
+                                   owl:someValuesFrom xsd:dateTime
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isFurnished ;
+                                   owl:someValuesFrom xsd:boolean
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :isReadyToLive ;
+                                   owl:someValuesFrom xsd:boolean
+                                 ] .
 
 
 ###  http://schema.org/BusStop
@@ -683,6 +695,16 @@ foaf:Person rdf:type owl:Class .
            rdfs:isDefinedBy <https://purl.org/homerent/> ;
            rdfs:label "Floor type"@en ,
                       "Tipo di pavimentazione"@it .
+
+
+###  https://purl.org/homerent/FourRoomApartment
+:FourRoomApartment rdf:type owl:Class ;
+                   rdfs:subClassOf schema:Apartment ;
+                   rdfs:comment "Questa sottoclasse di schema:Apartment modella un quadrilocale. Esso è un appartamento composto da quattro locali. Viene considerato quadrilocale anche il caso di un appartamento da 3.5 locali"@it ,
+                                "This subclass of schema:Apartment models a four-room apartment. It is an apartment consisting of four rooms. The case of a 3.5-room apartment is also considered a four-room apartment"@en ;
+                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                   rdfs:label "Quadrilocale"@it ,
+                              "Four-room apartment"@en .
 
 
 ###  https://purl.org/homerent/Freezer
@@ -954,6 +976,16 @@ foaf:Person rdf:type owl:Class .
                            "Strategic point"@en .
 
 
+###  https://purl.org/homerent/StudioFlatApartment
+:StudioFlatApartment rdf:type owl:Class ;
+                     rdfs:subClassOf schema:Apartment ;
+                     rdfs:comment "Questa sottoclasse di schema:Apartment modella un monolocale. Esso è un appartamento composto da un solo locale."@it ,
+                                  "This subclass of schema:Apartment models a studio flat apartment. So an apartment that has only one single room."@en ;
+                     rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                     rdfs:label "Monolocale"@it ,
+                                "Studio flat apartment"@en .
+
+
 ###  https://purl.org/homerent/Supermarket
 :Supermarket rdf:type owl:Class ;
              rdfs:subClassOf :ReachablePlace ;
@@ -972,6 +1004,44 @@ foaf:Person rdf:type owl:Class .
     rdfs:isDefinedBy <https://purl.org/homerent/> ;
     rdfs:label "TV"@en ,
                "TV"@it .
+
+
+###  https://purl.org/homerent/TemporaryApartment
+:TemporaryApartment rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( schema:Apartment
+                                                               [ rdf:type owl:Restriction ;
+                                                                 owl:onProperty :isAvailableFor ;
+                                                                 owl:someValuesFrom <http://purl.org/goodrelations/v1#QuantitativeValueFloat>
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf schema:Apartment ;
+                    rdfs:comment "Questa è una sottoclasse dello schema:Apartment che modella un appartamento disponibile temporaneamente."@it ,
+                                 "This is a subclass of schema:Apartment which models a temporarily available apartment."@en ;
+                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                    rdfs:label "Appartamento temporaneo"@it ,
+                               "Temporary apartment"@en .
+
+
+###  https://purl.org/homerent/ThreeRoomApartment
+:ThreeRoomApartment rdf:type owl:Class ;
+                    rdfs:subClassOf schema:Apartment ;
+                    rdfs:comment "Questa sottoclasse di schema:Apartment modella un trilocale. Esso è un appartamento composto da tre locali. Viene considerato trilocale anche il caso di un appartamento da 2.5 locali"@it ,
+                                 "This subclass of schema:Apartment models a three-room apartment. It is an apartment consisting of three rooms. The case of a 2.5-room apartment is also considered a three-room apartment"@en ;
+                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                    rdfs:label "Trilocale"@it ,
+                               "Three-room apartment"@en .
+
+
+###  https://purl.org/homerent/TwoRoomApartment
+:TwoRoomApartment rdf:type owl:Class ;
+                  rdfs:subClassOf schema:Apartment ;
+                  rdfs:comment "Questa sottoclasse di schema:Apartment modella un bilocale. Esso è un appartamento composto da due locali. Viene considerato bilocale anche il caso di un appartamento da 1.5 locali"@it ,
+                               "This subclass of schema:Apartment models a two-room apartment. It is an apartment consisting of two rooms. The case of a 1.5-room apartment is also considered a two-room apartment"@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "Bilocale"@it ,
+                             "Two-room apartment"@en .
 
 
 ###  https://purl.org/homerent/Vacuum
@@ -1124,6 +1194,15 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                 :ServicePrice
                 :StrategicPoint
                 :WaterPrice
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :FourRoomApartment
+                :StudioFlatApartment
+                :ThreeRoomApartment
+                :TwoRoomApartment
               )
 ] .
 
