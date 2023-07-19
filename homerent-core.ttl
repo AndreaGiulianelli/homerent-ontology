@@ -63,6 +63,10 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://purl.org/goodrelations/v1#includes
+<http://purl.org/goodrelations/v1#includes> owl:inverseOf :isApartmentIncluded .
+
+
 ###  http://purl.org/goodrelations/v1#offers
 <http://purl.org/goodrelations/v1#offers> owl:inverseOf :isOfferedBy .
 
@@ -70,6 +74,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/geoName
 :geoName rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
+         rdfs:domain schema:PostalAddress ;
          rdfs:range gn:Feature ;
          rdfs:comment "Questa proprietà permette di collegare un indirizzo alla posizione esatta espressa come feature geoname."@it ,
                       "This property allows to link an address to the exact location expressed as a geoname feature."@en ;
@@ -80,6 +85,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/hasAppliance
 :hasAppliance rdf:type owl:ObjectProperty ;
               rdfs:subPropertyOf :hasFeature ;
+              rdfs:range :Appliance ;
               owl:propertyDisjointWith :hasService ;
               rdfs:comment "Questa proprietà permette di mettere in relazione l'appartamento con gli elettrodomestici presenti al suo interno."@it ,
                            "This property allows to link an apartment to the appliance inside it."@en ;
@@ -103,6 +109,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/hasFeature
 :hasFeature rdf:type owl:ObjectProperty ;
             rdfs:domain schema:Apartment ;
+            rdfs:range :Feature ;
             rdfs:comment "Questa proprietà collega un appartamento alle funzionalità messe a disposizione."@it ,
                          "This property links an apartment to its features."@en ;
             rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -113,6 +120,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/hasFloorType
 :hasFloorType rdf:type owl:ObjectProperty ;
               rdfs:domain schema:Apartment ;
+              rdfs:range :FloorType ;
               rdfs:comment "Questa proprietà è necessaria per specificare il tipo di pavimento di un appartamento."@it ,
                            "This property is necessary to specify the floor type of an apartment."@en ;
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -143,6 +151,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/hasService
 :hasService rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf :hasFeature ;
+            rdfs:range :Service ;
             rdfs:comment "Questa proprietà permette di mettere in relazione un appartamento con i servizi messi a disposizione."@it ,
                          "This property allows to link an apartment with the services that are provided."@en ;
             rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -173,6 +182,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/isOfInterestTo
 :isOfInterestTo rdf:type owl:ObjectProperty ,
                          owl:FunctionalProperty ;
+                rdfs:domain :RentalAdInterest ;
+                rdfs:range schema:Person ;
                 rdfs:comment "Questa proprietà connette un interesse alla persona interessata."@it ,
                              "This property connects an interest to the interested person."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -196,6 +207,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 :isPossibleToReach rdf:type owl:ObjectProperty ;
                    owl:inverseOf :reachableFrom ;
                    rdfs:domain schema:Apartment ;
+                   rdfs:range :StrategicPoint ;
                    rdfs:comment "Questa proprietà collega un appartamento con i punti strategici che si possono raggiungere."@it ,
                                 "This property connects an apartment to strategic points that can be reached."@en ;
                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -212,6 +224,7 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 ###  https://purl.org/homerent/priceComponent
 :priceComponent rdf:type owl:ObjectProperty ;
+                rdfs:domain :CompoundPrice ;
                 rdfs:range <http://purl.org/goodrelations/v1#UnitPriceSpecification> ;
                 rdfs:comment "Questa proprietà permette di specificare i componenti del prezzo."@it ,
                              "This property allows to specify the price components."@en ;
@@ -233,6 +246,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/refersRentAd
 :refersRentAd rdf:type owl:ObjectProperty ,
                        owl:FunctionalProperty ;
+              rdfs:domain :RentalAdInterest ;
+              rdfs:range :RentalAd ;
               rdfs:comment "Questa proprietà è necessaria per collegare un interesse all'annuncio di affitto a cui si riferisce."@it ,
                            "This property is required to link an interest to the rental ad to which it refers."@en ;
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -243,6 +258,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 ###  https://purl.org/homerent/strategicPointRefersTo
 :strategicPointRefersTo rdf:type owl:ObjectProperty ,
                                  owl:FunctionalProperty ;
+                        rdfs:domain :StrategicPoint ;
+                        rdfs:range :ReachablePlace ;
                         rdfs:comment "Questa proprietà permette di mettere in relazione il punto strategico al luogo raggiungibile."@it ,
                                      "This property allows to link the strategic point to the reachable place."@en ;
                         rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -463,6 +480,10 @@ schema:Museum rdf:type owl:Class ;
 ###  http://schema.org/Pharmacy
 schema:Pharmacy rdf:type owl:Class ;
                 rdfs:subClassOf :ReachablePlace .
+
+
+###  http://schema.org/PostalAddress
+schema:PostalAddress rdf:type owl:Class .
 
 
 ###  http://schema.org/TrainStation
