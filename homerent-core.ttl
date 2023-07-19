@@ -640,8 +640,8 @@ foaf:Person rdf:type owl:Class .
          rdfs:comment "Questa classe funge da superclasse per tutte le caratteristiche che possono caratterizzare un appartamento."@it ,
                       "This class acts as a superclass for all characteristics that can characterize an apartment."@en ;
          rdfs:isDefinedBy <https://purl.org/homerent/> ;
-         rdfs:label "Feature"@en ,
-                    "Funzionalità"@it .
+         rdfs:label "Feature of the apartment"@en ,
+                    "Funzionalità presenti nell'appartamento"@it .
 
 
 ###  https://purl.org/homerent/FloorType
