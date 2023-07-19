@@ -1173,6 +1173,24 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
+  owl:members ( schema:Apartment
+                :CompoundPrice
+                :ElectricityPrice
+                :Feature
+                :FloorType
+                :HeatingPrice
+                :ReachablePlace
+                :RentalAd
+                :RentalAdInterest
+                :RentalPrice
+                :ServicePrice
+                :StrategicPoint
+                :WaterPrice
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
   owl:members ( schema:CollegeOrUniversity
                 schema:ExerciseGym
                 schema:Hospital
@@ -1218,23 +1236,6 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
   owl:members ( :BikeSharing
                 :CarSharing
                 :ScooterSharing
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :CompoundPrice
-                :ElectricityPrice
-                :Feature
-                :FloorType
-                :HeatingPrice
-                :ReachablePlace
-                :RentalAd
-                :RentalAdInterest
-                :RentalPrice
-                :ServicePrice
-                :StrategicPoint
-                :WaterPrice
               )
 ] .
 
