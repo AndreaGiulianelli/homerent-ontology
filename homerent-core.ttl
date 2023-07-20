@@ -76,7 +76,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 
 ###  http://schema.org/photo
-schema:photo rdf:type owl:ObjectProperty .
+schema:photo rdf:type owl:ObjectProperty ;
+             rdfs:range schema:ImageObject .
 
 
 ###  https://purl.org/homerent/geoName
@@ -173,7 +174,6 @@ schema:photo rdf:type owl:ObjectProperty .
                                    owl:topObjectProperty ;
                 rdf:type owl:FunctionalProperty ;
                 rdfs:domain schema:Apartment ;
-                rdfs:range schema:ImageObject ;
                 rdfs:comment "Questa proprietà permette di specificare la foto della planimetria dell'appartamento."@it ,
                              "This property allows to specify the house plan photo of the apartment."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -217,7 +217,6 @@ schema:photo rdf:type owl:ObjectProperty .
 :isOfferedBy rdf:type owl:ObjectProperty ,
                       owl:FunctionalProperty ;
              rdfs:domain :RentalAd ;
-             rdfs:range <http://purl.org/goodrelations/v1#BusinessEntity> ;
              rdfs:comment "Questa proprietà è l'inverso di gr:offers e modella che un annuncio di affitto è offerto da una entità di business."@it ,
                           "This property is the inverse of gr:offer modelling the fact that a rental ad is offered by a business entity."@en ;
              rdfs:isDefinedBy <https://purl.org/homerent/> ;
