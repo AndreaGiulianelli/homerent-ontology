@@ -80,6 +80,18 @@ schema:photo rdf:type owl:ObjectProperty ;
              rdfs:range schema:ImageObject .
 
 
+###  https://purl.org/homerent/canReach
+:canReach rdf:type owl:ObjectProperty ;
+          owl:propertyChainAxiom ( :isPossibleToReach
+                                   :strategicPointRefersTo
+                                 ) ;
+          rdfs:comment "Questa proprietà permette di collegare direttamente un appartamento ai luoghi che si possono raggiungere."@it ,
+                       "This property allows to directly connect an apartment to the reachable places."@en ;
+          rdfs:isDefinedBy <https://purl.org/homerent/> ;
+          rdfs:label "can reach"@en ,
+                     "può raggiungere"@it .
+
+
 ###  https://purl.org/homerent/geoName
 :geoName rdf:type owl:ObjectProperty ,
                   owl:FunctionalProperty ;
@@ -234,13 +246,6 @@ schema:photo rdf:type owl:ObjectProperty ;
                    rdfs:isDefinedBy <https://purl.org/homerent/> ;
                    rdfs:label "is possible to reach"@en ,
                               "è possibile raggiungere"@it .
-
-
-###  https://purl.org/homerent/isReachable
-:isReachable rdf:type owl:ObjectProperty ;
-             owl:propertyChainAxiom ( :isPossibleToReach
-                                      :strategicPointRefersTo
-                                    ) .
 
 
 ###  https://purl.org/homerent/priceComponent
@@ -484,7 +489,8 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
 
 ###  http://schema.org/Apartment
 schema:Apartment rdf:type owl:Class ;
-                 rdfs:subClassOf [ rdf:type owl:Restriction ;
+                 rdfs:subClassOf <http://purl.org/goodrelations/v1#ProductOrService> ,
+                                 [ rdf:type owl:Restriction ;
                                    owl:onProperty :isAvailableFrom ;
                                    owl:someValuesFrom xsd:dateTime
                                  ] ,
@@ -654,7 +660,7 @@ foaf:Person rdf:type owl:Class .
                                :HomeRentEntity ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :priceComponent ;
-                                 owl:someValuesFrom <http://purl.org/goodrelations/v1#UnitPriceSpecification>
+                                 owl:allValuesFrom <http://purl.org/goodrelations/v1#UnitPriceSpecification>
                                ] ;
                rdfs:comment "A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption."@en ,
                             "Una specifica di prezzo composto è quella che raggruppa più prezzi che si applicano tutti in combinazione per diverse dimensioni di consumo."@it ;
