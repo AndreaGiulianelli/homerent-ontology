@@ -631,6 +631,17 @@ foaf:Person rdf:type owl:Class .
                           "Prezzo composto"@it .
 
 
+###  https://purl.org/homerent/CulturalHolidayApartment
+:CulturalHolidayApartment rdf:type owl:Class ;
+                          rdfs:subClassOf schema:Apartment ,
+                                          :HomeRentEntity ;
+                          rdfs:comment "Questa sottoclasse di schema:Apartment modella il tipo di appartamenti che è ideale per le vacanze culturali essendo vicino a musei, arredato, pronto per trasferirsi e con un periodo di disponibilità di affitto temporaneo."@it ,
+                                       "This subclass of schema:Apartment models the type of apartment that is ideal for cultural vacation rentals as it is close to museums, furnished, move-in ready, and has a temporary rental availability period."@en ;
+                          rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                          rdfs:label "Appartamento per vacanza culturale"@it ,
+                                     "Cultural holiday apartment"@en .
+
+
 ###  https://purl.org/homerent/Dishwasher
 :Dishwasher rdf:type owl:Class ;
             rdfs:subClassOf :Appliance ;
@@ -1012,6 +1023,17 @@ foaf:Person rdf:type owl:Class .
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
                 rdfs:label "Punto strategico"@it ,
                            "Strategic point"@en .
+
+
+###  https://purl.org/homerent/StudentApartment
+:StudentApartment rdf:type owl:Class ;
+                  rdfs:subClassOf schema:Apartment ,
+                                  :HomeRentEntity ;
+                  rdfs:comment "Questa sottoclasse di schema:Apartment modella il tipo di appartamenti che è ideale per gli studenti, in particolare gli studenti di scambio in quanto è vicino all'università, è arredato e pronto per trasferirsi."@it ,
+                               "This subclass of schema:Apartment models the type of apartments that are suitable for students and in particular exchange students as it is close to the university, furnished and move-in ready."@en ;
+                  rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                  rdfs:label "Appartamento per studenti"@it ,
+                             "Student apartment"@en .
 
 
 ###  https://purl.org/homerent/StudioFlatApartment
