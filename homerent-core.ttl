@@ -565,6 +565,39 @@ foaf:Person rdf:type owl:Class .
                            "Aria condizionata"@it .
 
 
+###  https://purl.org/homerent/ApartmentNearTransport
+:ApartmentNearTransport rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( schema:Apartment
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty :isPossibleToReach ;
+                                                                     owl:someValuesFrom [ owl:intersectionOf ( :StrategicPoint
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty :strategicPointRefersTo ;
+                                                                                                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                      owl:unionOf ( :PublicTransport
+                                                                                                                                                    :SharedMobility
+                                                                                                                                                  )
+                                                                                                                                    ]
+                                                                                                               ]
+                                                                                                               [ rdf:type owl:Restriction ;
+                                                                                                                 owl:onProperty :distanceInKm ;
+                                                                                                                 owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                                                                      owl:onDatatype xsd:float ;
+                                                                                                                                      owl:withRestrictions ( [ xsd:maxInclusive "5.0"^^xsd:float
+                                                                                                                                                             ]
+                                                                                                                                                           )
+                                                                                                                                    ]
+                                                                                                               ]
+                                                                                                             ) ;
+                                                                                          rdf:type owl:Class
+                                                                                        ]
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] ;
+                        rdfs:subClassOf :HomeRentEntity .
+
+
 ###  https://purl.org/homerent/Appliance
 :Appliance rdf:type owl:Class ;
            rdfs:subClassOf :Feature ;
