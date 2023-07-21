@@ -1,0 +1,10 @@
+PREFIX : <https://purl.org/homerent/>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT ?rentalAd (SUM(?value) AS ?rentCost)
+WHERE {
+    ?rentalAd a :RentalAd ;
+              :hasExpense ?unitPrice .
+    ?unitPrice gr:hasCurrencyValue ?value .
+}
+GROUP BY ?rentalAd
