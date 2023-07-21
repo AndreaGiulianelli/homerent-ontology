@@ -1,0 +1,17 @@
+PREFIX : <https://purl.org/homerent/>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT ?rentalAd ?rentalAdId ?publicationDateTime ?offeredBy ?apartment (COUNT(?interest) AS ?interestedPeople)
+WHERE {
+    ?rentalAd :rentAdCode ?rentalAdId ;
+            gr:includes ?apartment ;
+            :isOfferedBy ?offeredBy .
+    OPTIONAL {
+        ?rentalAd gr:validFrom ?publicationDateTime .
+    }
+    OPTIONAL {
+        ?rentalAd :hasGeneratedInterest ?interest .
+    }
+}
+GROUP BY ?rentalAd ?rentalAdId ?publicationDateTime ?offeredBy ?apartment
+ORDER BY DESC(?publicationDateTime)
