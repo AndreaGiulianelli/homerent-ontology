@@ -297,6 +297,65 @@ schema:photo rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://schema.org/addressCountry
+schema:addressCountry rdf:type owl:DatatypeProperty ,
+                               owl:FunctionalProperty ;
+                      rdfs:range xsd:string .
+
+
+###  http://schema.org/addressLocality
+schema:addressLocality rdf:type owl:DatatypeProperty ,
+                                owl:FunctionalProperty ;
+                       rdfs:range xsd:string .
+
+
+###  http://schema.org/addressRegion
+schema:addressRegion rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:range xsd:string .
+
+
+###  http://schema.org/birthDate
+schema:birthDate rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:range xsd:dateTime .
+
+
+###  http://schema.org/description
+schema:description rdf:type owl:DatatypeProperty ;
+                   rdfs:range rdf:PlainLiteral .
+
+
+###  http://schema.org/email
+schema:email rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string .
+
+
+###  http://schema.org/familyName
+schema:familyName rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:range xsd:string .
+
+
+###  http://schema.org/floorLevel
+schema:floorLevel rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:domain schema:Apartment ;
+                  rdfs:range xsd:string .
+
+
+###  http://schema.org/givenName
+schema:givenName rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:range xsd:string .
+
+
+###  http://schema.org/legalName
+schema:legalName rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:range xsd:string .
+
+
 ###  http://schema.org/numberOfRooms
 schema:numberOfRooms rdf:type owl:DatatypeProperty ,
                               owl:FunctionalProperty ;
@@ -304,9 +363,26 @@ schema:numberOfRooms rdf:type owl:DatatypeProperty ,
                      rdfs:range xsd:float .
 
 
+###  http://schema.org/postalCode
+schema:postalCode rdf:type owl:DatatypeProperty ,
+                           owl:FunctionalProperty ;
+                  rdfs:range xsd:string .
+
+
 ###  http://schema.org/startDate
 schema:startDate rdf:type owl:DatatypeProperty ;
                  owl:equivalentProperty :interestDateTime .
+
+
+###  http://schema.org/streetAddress
+schema:streetAddress rdf:type owl:DatatypeProperty ,
+                              owl:FunctionalProperty ;
+                     rdfs:range xsd:string .
+
+
+###  http://schema.org/telephone
+schema:telephone rdf:type owl:DatatypeProperty ;
+                 rdfs:range xsd:string .
 
 
 ###  http://schema.org/yearBuilt
@@ -341,7 +417,7 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/floorDescription
 :floorDescription rdf:type owl:DatatypeProperty ;
                   rdfs:domain :FloorType ;
-                  rdfs:range xsd:string ;
+                  rdfs:range rdf:PlainLiteral ;
                   rdfs:comment "Questa proprietà permette di descrivere il tipo di pavimentazione presente in un appartamento."@it ,
                                "This property allows to describe the type of the floor that is inside an apartment."@en ;
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -436,7 +512,7 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
 ###  https://purl.org/homerent/serviceDescription
 :serviceDescription rdf:type owl:DatatypeProperty ;
                     rdfs:domain :ServicePrice ;
-                    rdfs:range xsd:string ;
+                    rdfs:range rdf:PlainLiteral ;
                     rdfs:comment "Questa proprietà permette di descrivere un servizio messo a disposizione nell'appartamento."@it ,
                                  "This property allows to describe a service provided in the apartment."@en ;
                     rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -1189,19 +1265,19 @@ gn:Feature rdf:type owl:Class .
                        :FloorType ;
               :floorDescription """Ceramic floor tiles are durable, versatile, and aesthetically pleasing flooring materials made from clay and other natural substances.
 They come in a variety of colors, patterns, and textures, allowing for numerous design options to suit different styles and preferences.
-Ceramic tiles are highly resistant to wear, moisture, and stains, making them suitable for high-traffic areas and easy to maintain with regular cleaning.""" .
+Ceramic tiles are highly resistant to wear, moisture, and stains, making them suitable for high-traffic areas and easy to maintain with regular cleaning."""@en .
 
 
 ###  https://purl.org/homerent/LaminateFloor
 :LaminateFloor rdf:type owl:NamedIndividual ,
                         :FloorType ;
-               :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer." .
+               :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer."@en .
 
 
 ###  https://purl.org/homerent/ParquetFloor
 :ParquetFloor rdf:type owl:NamedIndividual ,
                        :FloorType ;
-              :floorDescription "Parquet is a type of wood flooring made by arranging small slats of wood in distinct, repeating patterns. While traditional parquet floors were installed one piece at a time, most modern parquet comes in tile form in which the wood slats are bonded to a backing material." .
+              :floorDescription "Parquet is a type of wood flooring made by arranging small slats of wood in distinct, repeating patterns. While traditional parquet floors were installed one piece at a time, most modern parquet comes in tile form in which the wood slats are bonded to a backing material."@en .
 
 
 ###  https://purl.org/homerent/PorcelainStoneWareFloor
@@ -1209,7 +1285,7 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
                                   :FloorType ;
                          :floorDescription """Porcelain stoneware floor is a type of ceramic tile that is extremely dense and durable, made from a specific type of clay fired at very high temperatures.
 It is highly resistant to wear, scratches, stains, and moisture, making it suitable for both indoor and outdoor use, including high-traffic areas and areas prone to water exposure such as bathrooms and kitchens.
-Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and sizes, and can replicate the look of natural materials such as stone, concrete, or wood. They offer a combination of aesthetic appeal and practicality, making them a popular choice for residential and commercial spaces.""" .
+Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and sizes, and can replicate the look of natural materials such as stone, concrete, or wood. They offer a combination of aesthetic appeal and practicality, making them a popular choice for residential and commercial spaces."""@en .
 
 
 ###  https://purl.org/homerent/PvcFloor
@@ -1217,7 +1293,7 @@ Porcelain stoneware floor tiles come in a wide variety of colors, finishes, and 
                    :FloorType ;
           :floorDescription """PVC flooring is a type of flooring made from polyvinyl chloride, a synthetic plastic.
 It is moisture-resistant, scratch-resistant, and stain-resistant, making it a good choice for high-traffic areas.
-PVC flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home.""" .
+PVC flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
 
 
 ###  https://purl.org/homerent/ResinFloor
@@ -1225,7 +1301,7 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
                      :FloorType ;
             :floorDescription """Resin flooring is a type of flooring made from epoxy resin or polyurethane resin.
 It is durable, water-resistant, and chemical-resistant, making it a good choice for high-traffic areas.
-Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home.""" .
+Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
 
 
 #################################################################
