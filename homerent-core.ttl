@@ -69,7 +69,8 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/goodrelations/v1#includes
-gr:includes owl:inverseOf :isApartmentIncluded .
+gr:includes owl:inverseOf :isApartmentIncluded ;
+            rdf:type owl:FunctionalProperty .
 
 
 ###  http://purl.org/goodrelations/v1#offers
@@ -316,6 +317,10 @@ schema:photo rdf:type owl:ObjectProperty ;
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://purl.org/goodrelations/v1#validFrom
+gr:validFrom rdf:type owl:FunctionalProperty .
+
 
 ###  http://schema.org/addressCountry
 schema:addressCountry rdf:type owl:DatatypeProperty ,
