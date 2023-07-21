@@ -316,10 +316,6 @@ schema:photo rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
-###  http://purl.org/goodrelations/v1#hasMaxValue
-<http://purl.org/goodrelations/v1#hasMaxValue> rdfs:domain schema:ImageObject .
-
-
 ###  http://schema.org/addressCountry
 schema:addressCountry rdf:type owl:DatatypeProperty ,
                                owl:FunctionalProperty ;
@@ -366,6 +362,7 @@ schema:email rdf:type owl:DatatypeProperty ;
 ###  http://schema.org/familyName
 schema:familyName rdf:type owl:DatatypeProperty ,
                            owl:FunctionalProperty ;
+                  rdfs:domain schema:Person ;
                   rdfs:range xsd:string .
 
 
@@ -379,6 +376,7 @@ schema:floorLevel rdf:type owl:DatatypeProperty ,
 ###  http://schema.org/givenName
 schema:givenName rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
+                 rdfs:domain schema:Person ;
                  rdfs:range xsd:string .
 
 
@@ -552,18 +550,6 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
                     rdfs:isDefinedBy <https://purl.org/homerent/> ;
                     rdfs:label "descrizione del servizio"@it ,
                                "service description"@en .
-
-
-###  https://purl.org/homerent/totalPrice
-:totalPrice rdf:type owl:DatatypeProperty ,
-                     owl:FunctionalProperty ;
-            rdfs:domain :CompoundPrice ;
-            rdfs:range xsd:float ;
-            rdfs:comment "Questa proprietà permette di specificare il prezzo totale in un prezzo composto."@it ,
-                         "This property allows to specify the total price in a compound price."@en ;
-            rdfs:isDefinedBy <https://purl.org/homerent/> ;
-            rdfs:label "prezzo totale"@it ,
-                       "total price"@en .
 
 
 #################################################################
@@ -1295,6 +1281,15 @@ gn:Feature rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+###  https://purl.org/homerent/AndreaGiulianelli
+:AndreaGiulianelli rdf:type owl:NamedIndividual ;
+                   <http://purl.org/goodrelations/v1#offers> :RentalAdApartment1 ;
+                   schema:birthDate "1999-07-17T00:00:00"^^xsd:dateTime ;
+                   schema:email "andrea.giulianelli@example.it" ;
+                   schema:familyName "Giulianelli" ;
+                   schema:givenName "Andrea" .
+
+
 ###  https://purl.org/homerent/Apartment1
 :Apartment1 rdf:type owl:NamedIndividual ;
             schema:address :Apartment1Address ;
@@ -1308,7 +1303,8 @@ gn:Feature rdf:type owl:Class .
             :hasFloorType :LaminateFloor ;
             :housePlanPhoto :Apartment1PlanPhoto ;
             :isAvailableFor :Apartment1Availability ;
-            :isPossibleToReach :StrategicPointBusStop2508Apartment1 ,
+            :isPossibleToReach :StrategicPointArcheologicalMuseumApartment1 ,
+                               :StrategicPointBusStop2508Apartment1 ,
                                :StrategicPointSupermarketApartment1 ,
                                :StrategicPointTrainStationApartment1 ,
                                :StrategicPointUniversityApartment1 ;
@@ -1500,10 +1496,27 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
                                schema:streetAddress "Viale Giovanni Ghirotti, 286" .
 
 
+###  https://purl.org/homerent/InternetPriceApartment1
+:InternetPriceApartment1 rdf:type owl:NamedIndividual ,
+                                  :ServicePrice ;
+                         <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
+                         <http://purl.org/goodrelations/v1#hasCurrencyValue> "40.0"^^xsd:float ;
+                         <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
+                         :serviceDescription "Prezzo per internet"@it .
+
+
 ###  https://purl.org/homerent/LaminateFloor
 :LaminateFloor rdf:type owl:NamedIndividual ,
                         :FloorType ;
                :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer."@en .
+
+
+###  https://purl.org/homerent/MarioRossi
+:MarioRossi rdf:type owl:NamedIndividual ;
+            schema:birthDate "1985-05-13T00:00:00"^^xsd:dateTime ;
+            schema:email "mario.rossi@example.com" ;
+            schema:familyName "Rossi" ;
+            schema:givenName "Rossi" .
 
 
 ###  https://purl.org/homerent/ParquetFloor
@@ -1528,6 +1541,40 @@ It is moisture-resistant, scratch-resistant, and stain-resistant, making it a go
 PVC flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
 
 
+###  https://purl.org/homerent/RentalAdApartment1
+:RentalAdApartment1 rdf:type owl:NamedIndividual ;
+                    <http://purl.org/goodrelations/v1#hasPriceSpecification> :RentalAdApartment1CoumpoundPrice ;
+                    <http://purl.org/goodrelations/v1#includes> :Apartment1 ;
+                    <http://purl.org/goodrelations/v1#validFrom> "2023-07-21T11:10:00"^^xsd:dateTime ;
+                    :rentAdCode "303333234934023423" .
+
+
+###  https://purl.org/homerent/RentalAdApartment1CoumpoundPrice
+:RentalAdApartment1CoumpoundPrice rdf:type owl:NamedIndividual ;
+                                  :priceComponent :InternetPriceApartment1 ,
+                                                  :RentalPriceApartment1 .
+
+
+###  https://purl.org/homerent/RentalAdApartment1InterestMarioRossi
+:RentalAdApartment1InterestMarioRossi rdf:type owl:NamedIndividual ;
+                                      :isOfInterestTo :MarioRossi ;
+                                      :refersRentAd :RentalAdApartment1 ;
+                                      :interestDateTime "2023-07-21T12:20:00"^^xsd:dateTime .
+
+
+###  https://purl.org/homerent/RentalAdApartment1Price
+:RentalAdApartment1Price rdf:type owl:NamedIndividual .
+
+
+###  https://purl.org/homerent/RentalPriceApartment1
+:RentalPriceApartment1 rdf:type owl:NamedIndividual ,
+                                :RentalPrice ;
+                       <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
+                       <http://purl.org/goodrelations/v1#hasCurrencyValue> "937.0"^^xsd:float ;
+                       <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
+                       schema:name "affitto"@it .
+
+
 ###  https://purl.org/homerent/ResinFloor
 :ResinFloor rdf:type owl:NamedIndividual ,
                      :FloorType ;
@@ -1540,6 +1587,12 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 :ScooterSharingCesena rdf:type owl:NamedIndividual ,
                                :ScooterSharing ;
                       schema:legalName "Scooter sharing company XYZ" .
+
+
+###  https://purl.org/homerent/StrategicPointArcheologicalMuseumApartment1
+:StrategicPointArcheologicalMuseumApartment1 rdf:type owl:NamedIndividual ;
+                                             :strategicPointRefersTo :ArchaeologicalMuseumCesena ;
+                                             :distanceInKm "1.8"^^xsd:float .
 
 
 ###  https://purl.org/homerent/StrategicPointBusStop2508Apartment1
