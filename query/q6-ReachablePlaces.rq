@@ -1,0 +1,9 @@
+PREFIX : <https://purl.org/homerent/>
+
+SELECT ?reachablePlace ?distance
+WHERE {
+    :Apartment1 :isPossibleToReach ?strategicPoint .
+    ?strategicPoint :distanceInKm ?distance ;
+                    :strategicPointRefersTo ?reachablePlace .
+    FILTER (?distance < 5)
+}
