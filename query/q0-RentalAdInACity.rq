@@ -1,0 +1,13 @@
+PREFIX : <https://purl.org/homerent/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://schema.org/>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+
+SELECT ?rentalAdId
+WHERE {
+    ?rentalAd :rentAdCode ?rentalAdId ;
+            gr:includes ?apartment .
+    ?apartment schema:address ?address .
+    ?address :geoName <https://sws.geonames.org/3178957/> .
+}
