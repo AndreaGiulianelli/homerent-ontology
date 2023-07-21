@@ -380,12 +380,6 @@ schema:givenName rdf:type owl:DatatypeProperty ,
                  rdfs:range xsd:string .
 
 
-###  http://schema.org/legalName
-schema:legalName rdf:type owl:DatatypeProperty ,
-                          owl:FunctionalProperty ;
-                 rdfs:range xsd:string .
-
-
 ###  http://schema.org/numberOfRooms
 schema:numberOfRooms rdf:type owl:DatatypeProperty ,
                               owl:FunctionalProperty ;
@@ -920,7 +914,7 @@ foaf:Person rdf:type owl:Class .
                                                                     owl:someValuesFrom [ owl:intersectionOf ( :RentalAd
                                                                                                               [ rdf:type owl:Restriction ;
                                                                                                                 owl:onProperty :hasGeneratedInterest ;
-                                                                                                                owl:minCardinality "10"^^xsd:nonNegativeInteger
+                                                                                                                owl:minCardinality "5"^^xsd:nonNegativeInteger
                                                                                                               ]
                                                                                                             ) ;
                                                                                          rdf:type owl:Class
@@ -1379,6 +1373,15 @@ Al piano primo dispone di quattro camere da letto singole e una matrimoniale, tr
                      schema:contentUrl "https://example.com/photo1" .
 
 
+###  https://purl.org/homerent/Apartment2
+:Apartment2 rdf:type owl:NamedIndividual ;
+            schema:numberOfRooms "1.0"^^xsd:float ;
+            schema:yearBuilt 1980 ;
+            :isAvailableFrom "2023-08-22T10:00:00"^^xsd:dateTime ;
+            :isFurnished "false"^^xsd:boolean ;
+            :isReadyToLive "false"^^xsd:boolean .
+
+
 ###  https://purl.org/homerent/ArchaeologicalMuseumCesena
 :ArchaeologicalMuseumCesena rdf:type owl:NamedIndividual ,
                                      schema:Museum ;
@@ -1482,6 +1485,35 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
                    schema:streetAddress "Via Arturo Carlo Jemolo 110" .
 
 
+###  https://purl.org/homerent/ElenaMoretti
+:ElenaMoretti rdf:type owl:NamedIndividual ;
+              schema:email "elena.moretti@example.com" ;
+              schema:familyName "Moretti" ;
+              schema:givenName "Elena" .
+
+
+###  https://purl.org/homerent/ExampleCompany
+:ExampleCompany rdf:type owl:NamedIndividual ,
+                         schema:Organization ;
+                <http://purl.org/goodrelations/v1#offers> :RentalAdApartment2 ;
+                <http://purl.org/goodrelations/v1#legalName> "Example company" ;
+                schema:email "company@examplecompany.it" .
+
+
+###  https://purl.org/homerent/FedericoRossi
+:FedericoRossi rdf:type owl:NamedIndividual ;
+               schema:email "ferderico.rossi@example.com" ;
+               schema:familyName "Rossi" ;
+               schema:givenName "Federico" .
+
+
+###  https://purl.org/homerent/FrancescoBianchi
+:FrancescoBianchi rdf:type owl:NamedIndividual ;
+                  schema:email "francesco.bianchi@example.com" ;
+                  schema:familyName "Bianchi" ;
+                  schema:givenName "Francesco" .
+
+
 ###  https://purl.org/homerent/HospitalBufaliniCesena
 :HospitalBufaliniCesena rdf:type owl:NamedIndividual ,
                                  schema:Hospital ;
@@ -1509,6 +1541,13 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
 :LaminateFloor rdf:type owl:NamedIndividual ,
                         :FloorType ;
                :floorDescription "Laminate flooring (also called floating wood tile in the United States) is a multi-layer synthetic flooring product fused together with a lamination process. Laminate flooring simulates wood (or sometimes stone) with a photographic applique layer under a clear protective layer."@en .
+
+
+###  https://purl.org/homerent/LuigiArcangeli
+:LuigiArcangeli rdf:type owl:NamedIndividual ;
+                schema:email "luigi.arcangeli@example.com" ;
+                schema:familyName "Arcangeli" ;
+                schema:givenName "Luigi" .
 
 
 ###  https://purl.org/homerent/MarioRossi
@@ -1566,13 +1605,69 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
 :RentalAdApartment1Price rdf:type owl:NamedIndividual .
 
 
+###  https://purl.org/homerent/RentalAdApartment2
+:RentalAdApartment2 rdf:type owl:NamedIndividual ;
+                    <http://purl.org/goodrelations/v1#hasPriceSpecification> :RentalAdApartment2CompoundPrice ;
+                    <http://purl.org/goodrelations/v1#includes> :Apartment2 ;
+                    :rentAdCode "3242443543543545465" .
+
+
+###  https://purl.org/homerent/RentalAdApartment2CompoundPrice
+:RentalAdApartment2CompoundPrice rdf:type owl:NamedIndividual ;
+                                 :priceComponent :RentalPriceApartment2 .
+
+
+###  https://purl.org/homerent/RentalAdApartment2InterestElenaMoretti
+:RentalAdApartment2InterestElenaMoretti rdf:type owl:NamedIndividual ;
+                                        :isOfInterestTo :ElenaMoretti ;
+                                        :refersRentAd :RentalAdApartment2 ;
+                                        :interestDateTime "2023-07-20T14:49:00"^^xsd:dateTime .
+
+
+###  https://purl.org/homerent/RentalAdApartment2InterestFedericoRossi
+:RentalAdApartment2InterestFedericoRossi rdf:type owl:NamedIndividual ;
+                                         :isOfInterestTo :FedericoRossi ;
+                                         :refersRentAd :RentalAdApartment2 ;
+                                         :interestDateTime "2023-07-25T07:00:00"^^xsd:dateTime .
+
+
+###  https://purl.org/homerent/RentalAdApartment2InterestFrancescoBianchi
+:RentalAdApartment2InterestFrancescoBianchi rdf:type owl:NamedIndividual ;
+                                            :isOfInterestTo :FrancescoBianchi ;
+                                            :refersRentAd :RentalAdApartment2 ;
+                                            :interestDateTime "2023-07-29T08:00:00"^^xsd:dateTime .
+
+
+###  https://purl.org/homerent/RentalAdApartment2InterestLuigiArcangeli
+:RentalAdApartment2InterestLuigiArcangeli rdf:type owl:NamedIndividual ;
+                                          :isOfInterestTo :LuigiArcangeli ;
+                                          :refersRentAd :RentalAdApartment2 ;
+                                          :interestDateTime "2023-07-26T08:00:00"^^xsd:dateTime .
+
+
+###  https://purl.org/homerent/RentalAdApartment2InterestMarioRossi
+:RentalAdApartment2InterestMarioRossi rdf:type owl:NamedIndividual ;
+                                      :isOfInterestTo :MarioRossi ;
+                                      :refersRentAd :RentalAdApartment2 ;
+                                      :interestDateTime "2023-07-30T18:00:00"^^xsd:dateTime .
+
+
 ###  https://purl.org/homerent/RentalPriceApartment1
 :RentalPriceApartment1 rdf:type owl:NamedIndividual ,
                                 :RentalPrice ;
                        <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
                        <http://purl.org/goodrelations/v1#hasCurrencyValue> "937.0"^^xsd:float ;
                        <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
-                       schema:name "affitto"@it .
+                       <http://purl.org/goodrelations/v1#name> "affitto"@it .
+
+
+###  https://purl.org/homerent/RentalPriceApartment2
+:RentalPriceApartment2 rdf:type owl:NamedIndividual ,
+                                :RentalPrice ;
+                       <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
+                       <http://purl.org/goodrelations/v1#hasCurrencyValue> "700.0"^^xsd:float ;
+                       <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
+                       <http://purl.org/goodrelations/v1#name> "affitto"@it .
 
 
 ###  https://purl.org/homerent/ResinFloor
@@ -1586,7 +1681,7 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 ###  https://purl.org/homerent/ScooterSharingCesena
 :ScooterSharingCesena rdf:type owl:NamedIndividual ,
                                :ScooterSharing ;
-                      schema:legalName "Scooter sharing company XYZ" .
+                      <http://purl.org/goodrelations/v1#legalName> "Scooter Sharing Company XYZ" .
 
 
 ###  https://purl.org/homerent/StrategicPointArcheologicalMuseumApartment1
@@ -1715,6 +1810,120 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                 :ThreeRoomApartment
                 :TwoRoomApartment
               )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://purl.org/goodrelations/v1#AmericanExpress>
+                        <http://purl.org/goodrelations/v1#Business>
+                        <http://purl.org/goodrelations/v1#Buy>
+                        <http://purl.org/goodrelations/v1#ByBankTransferInAdvance>
+                        <http://purl.org/goodrelations/v1#ByInvoice>
+                        <http://purl.org/goodrelations/v1#COD>
+                        <http://purl.org/goodrelations/v1#Cash>
+                        <http://purl.org/goodrelations/v1#CheckInAdvance>
+                        <http://purl.org/goodrelations/v1#ConstructionInstallation>
+                        <http://purl.org/goodrelations/v1#DHL>
+                        <http://purl.org/goodrelations/v1#DeliveryModeDirectDownload>
+                        <http://purl.org/goodrelations/v1#DeliveryModeFreight>
+                        <http://purl.org/goodrelations/v1#DeliveryModeMail>
+                        <http://purl.org/goodrelations/v1#DeliveryModeOwnFleet>
+                        <http://purl.org/goodrelations/v1#DeliveryModePickUp>
+                        <http://purl.org/goodrelations/v1#DinersClub>
+                        <http://purl.org/goodrelations/v1#DirectDebit>
+                        <http://purl.org/goodrelations/v1#Discover>
+                        <http://purl.org/goodrelations/v1#Dispose>
+                        <http://purl.org/goodrelations/v1#Enduser>
+                        <http://purl.org/goodrelations/v1#FederalExpress>
+                        <http://purl.org/goodrelations/v1#Friday>
+                        <http://purl.org/goodrelations/v1#GoogleCheckout>
+                        <http://purl.org/goodrelations/v1#JCB>
+                        <http://purl.org/goodrelations/v1#Labor-BringIn>
+                        <http://purl.org/goodrelations/v1#LeaseOut>
+                        <http://purl.org/goodrelations/v1#Maintain>
+                        <http://purl.org/goodrelations/v1#MasterCard>
+                        <http://purl.org/goodrelations/v1#Monday>
+                        <http://purl.org/goodrelations/v1#PartsAndLabor-BringIn>
+                        <http://purl.org/goodrelations/v1#PartsAndLabor-PickUp>
+                        <http://purl.org/goodrelations/v1#PayPal>
+                        <http://purl.org/goodrelations/v1#PaySwarm>
+                        <http://purl.org/goodrelations/v1#ProvideService>
+                        <http://purl.org/goodrelations/v1#PublicHolidays>
+                        <http://purl.org/goodrelations/v1#PublicInstitution>
+                        <http://purl.org/goodrelations/v1#Repair>
+                        <http://purl.org/goodrelations/v1#Reseller>
+                        <http://purl.org/goodrelations/v1#Saturday>
+                        <http://purl.org/goodrelations/v1#Sell>
+                        <http://purl.org/goodrelations/v1#Sunday>
+                        <http://purl.org/goodrelations/v1#Thursday>
+                        <http://purl.org/goodrelations/v1#Tuesday>
+                        <http://purl.org/goodrelations/v1#UPS>
+                        <http://purl.org/goodrelations/v1#VISA>
+                        <http://purl.org/goodrelations/v1#Wednesday>
+                        :AndreaGiulianelli
+                        :Apartment1
+                        :Apartment1Address
+                        :Apartment1AirConditioner
+                        :Apartment1Availability
+                        :Apartment1FloorSize
+                        :Apartment1Fridge
+                        :Apartment1Garden
+                        :Apartment1Kitchen
+                        :Apartment1Occupancy
+                        :Apartment1Photo1
+                        :Apartment1PlanPhoto
+                        :Apartment2
+                        :ArchaeologicalMuseumCesena
+                        :ArchaeologicalMuseumCesenaAddress
+                        :BusStop2508
+                        :BusStopTrainStationCesena
+                        :BusStopTrainStationCesenaAddress
+                        :BusStopUniversityPaveseCesena
+                        :BusStopUniversityPaveseCesenaAddress
+                        :BusStopUniversitySabaCesena
+                        :BusStopUniversitySabaCesenaAddress
+                        :CeramicFloor
+                        :CesenaTrainStation
+                        :CesenaTrainStationAddress
+                        :CoopCesena
+                        :CoopCesenaAddress
+                        :ElenaMoretti
+                        :ExampleCompany
+                        :FedericoRossi
+                        :FrancescoBianchi
+                        :HospitalBufaliniCesena
+                        :HospitalBufaliniCesenaAddress
+                        :InternetPriceApartment1
+                        :LaminateFloor
+                        :LuigiArcangeli
+                        :MarioRossi
+                        :ParquetFloor
+                        :PorcelainStoneWareFloor
+                        :PvcFloor
+                        :RentalAdApartment1
+                        :RentalAdApartment1CoumpoundPrice
+                        :RentalAdApartment1InterestMarioRossi
+                        :RentalAdApartment1Price
+                        :RentalAdApartment2
+                        :RentalAdApartment2CompoundPrice
+                        :RentalAdApartment2InterestElenaMoretti
+                        :RentalAdApartment2InterestFedericoRossi
+                        :RentalAdApartment2InterestFrancescoBianchi
+                        :RentalAdApartment2InterestLuigiArcangeli
+                        :RentalAdApartment2InterestMarioRossi
+                        :RentalPriceApartment1
+                        :RentalPriceApartment2
+                        :ResinFloor
+                        :ScooterSharingCesena
+                        :StrategicPointArcheologicalMuseumApartment1
+                        :StrategicPointBusStop2508Apartment1
+                        :StrategicPointSupermarketApartment1
+                        :StrategicPointTrainStationApartment1
+                        :StrategicPointUniversityApartment1
+                        :UniversityCesena
+                        :UniversityCesenaAddress
+                        <https://sws.geonames.org/3178957/>
+                      )
 ] .
 
 
