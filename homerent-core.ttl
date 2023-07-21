@@ -1384,11 +1384,21 @@ Al piano primo dispone di quattro camere da letto singole e una matrimoniale, tr
 
 ###  https://purl.org/homerent/Apartment2
 :Apartment2 rdf:type owl:NamedIndividual ;
+            schema:address :Apartment2Address ;
             schema:numberOfRooms "1.0"^^xsd:float ;
             schema:yearBuilt 1980 ;
             :isAvailableFrom "2023-08-22T10:00:00"^^xsd:dateTime ;
             :isFurnished "false"^^xsd:boolean ;
             :isReadyToLive "false"^^xsd:boolean .
+
+
+###  https://purl.org/homerent/Apartment2Address
+:Apartment2Address rdf:type owl:NamedIndividual ;
+                   :geoName <https://sws.geonames.org/3178957/> ;
+                   schema:addressCountry "ITA" ;
+                   schema:addressLocality "Cesena" ;
+                   schema:postalCode "47522" ;
+                   schema:streetAddress "Viale Cesare Pavese X" .
 
 
 ###  https://purl.org/homerent/ArchaeologicalMuseumCesena
