@@ -75,6 +75,25 @@ foaf:surname rdf:type owl:AnnotationProperty .
 <http://purl.org/goodrelations/v1#offers> owl:inverseOf :isOfferedBy .
 
 
+###  http://schema.org/address
+schema:address rdf:type owl:ObjectProperty ;
+               rdfs:range schema:PostalAddress .
+
+
+###  http://schema.org/floorSize
+schema:floorSize rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain schema:Apartment ;
+                 rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueFloat> .
+
+
+###  http://schema.org/occupancy
+schema:occupancy rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
+                 rdfs:domain schema:Apartment ;
+                 rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueInteger> .
+
+
 ###  http://schema.org/photo
 schema:photo rdf:type owl:ObjectProperty ;
              rdfs:range schema:ImageObject .
@@ -297,21 +316,28 @@ schema:photo rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://purl.org/goodrelations/v1#hasMaxValue
+<http://purl.org/goodrelations/v1#hasMaxValue> rdfs:domain schema:ImageObject .
+
+
 ###  http://schema.org/addressCountry
 schema:addressCountry rdf:type owl:DatatypeProperty ,
                                owl:FunctionalProperty ;
+                      rdfs:domain schema:PostalAddress ;
                       rdfs:range xsd:string .
 
 
 ###  http://schema.org/addressLocality
 schema:addressLocality rdf:type owl:DatatypeProperty ,
                                 owl:FunctionalProperty ;
+                       rdfs:domain schema:PostalAddress ;
                        rdfs:range xsd:string .
 
 
 ###  http://schema.org/addressRegion
 schema:addressRegion rdf:type owl:DatatypeProperty ,
                               owl:FunctionalProperty ;
+                     rdfs:domain schema:PostalAddress ;
                      rdfs:range xsd:string .
 
 
@@ -319,6 +345,12 @@ schema:addressRegion rdf:type owl:DatatypeProperty ,
 schema:birthDate rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
                  rdfs:range xsd:dateTime .
+
+
+###  http://schema.org/contentUrl
+schema:contentUrl rdf:type owl:DatatypeProperty ;
+                  rdfs:domain schema:ImageObject ;
+                  rdfs:range xsd:string .
 
 
 ###  http://schema.org/description
@@ -366,6 +398,7 @@ schema:numberOfRooms rdf:type owl:DatatypeProperty ,
 ###  http://schema.org/postalCode
 schema:postalCode rdf:type owl:DatatypeProperty ,
                            owl:FunctionalProperty ;
+                  rdfs:domain schema:PostalAddress ;
                   rdfs:range xsd:string .
 
 
@@ -377,6 +410,7 @@ schema:startDate rdf:type owl:DatatypeProperty ;
 ###  http://schema.org/streetAddress
 schema:streetAddress rdf:type owl:DatatypeProperty ,
                               owl:FunctionalProperty ;
+                     rdfs:domain schema:PostalAddress ;
                      rdfs:range xsd:string .
 
 
@@ -624,7 +658,8 @@ schema:Pharmacy rdf:type owl:Class ;
 
 
 ###  http://schema.org/PostalAddress
-schema:PostalAddress rdf:type owl:Class .
+schema:PostalAddress rdf:type owl:Class ;
+                     owl:disjointWith :HomeRentEntity .
 
 
 ###  http://schema.org/TrainStation
@@ -1260,12 +1295,209 @@ gn:Feature rdf:type owl:Class .
 #    Individuals
 #################################################################
 
+###  https://purl.org/homerent/Apartment1
+:Apartment1 rdf:type owl:NamedIndividual ;
+            schema:address :Apartment1Address ;
+            schema:floorSize :Apartment1FloorSize ;
+            schema:occupancy :Apartment1Occupancy ;
+            schema:photo :Apartment1Photo1 ;
+            :hasFeature :Apartment1AirConditioner ,
+                        :Apartment1Fridge ,
+                        :Apartment1Garden ,
+                        :Apartment1Kitchen ;
+            :hasFloorType :LaminateFloor ;
+            :housePlanPhoto :Apartment1PlanPhoto ;
+            :isAvailableFor :Apartment1Availability ;
+            :isPossibleToReach :StrategicPointBusStop2508Apartment1 ,
+                               :StrategicPointSupermarketApartment1 ,
+                               :StrategicPointTrainStationApartment1 ,
+                               :StrategicPointUniversityApartment1 ;
+            schema:description """Cesena : in zona Ippodromo , appartamento al piano primo CON STANZE IN AFFITTO PER STUDENTI.
+Al piano primo dispone di quattro camere da letto singole e una matrimoniale, tre bagni e soggiorno con angolo cottura."""@it ;
+            schema:floorLevel "1" ;
+            schema:numberOfRooms "4.0"^^xsd:float ;
+            schema:yearBuilt 1969 ;
+            :isAvailableFrom "2023-07-21T00:00:00"^^xsd:dateTime ;
+            :isFurnished "true"^^xsd:boolean ;
+            :isReadyToLive "true"^^xsd:boolean ;
+            :lastRenovationYear 2023 .
+
+
+###  https://purl.org/homerent/Apartment1Address
+:Apartment1Address rdf:type owl:NamedIndividual ;
+                   :geoName <https://sws.geonames.org/3178957/> ;
+                   schema:addressCountry "ITA" ;
+                   schema:addressLocality "Cesena" ;
+                   schema:postalCode "47522" ;
+                   schema:streetAddress "Viale Gramsci X" .
+
+
+###  https://purl.org/homerent/Apartment1AirConditioner
+:Apartment1AirConditioner rdf:type owl:NamedIndividual ,
+                                   :AirConditioner ;
+                          :isFeatureUsageShared "false"^^xsd:boolean .
+
+
+###  https://purl.org/homerent/Apartment1Availability
+:Apartment1Availability rdf:type owl:NamedIndividual ;
+                        <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
+                        <http://purl.org/goodrelations/v1#hasValueFloat> "5.0"^^xsd:float .
+
+
+###  https://purl.org/homerent/Apartment1FloorSize
+:Apartment1FloorSize rdf:type owl:NamedIndividual ;
+                     <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MTK" ;
+                     <http://purl.org/goodrelations/v1#hasValueFloat> "180.0"^^xsd:float .
+
+
+###  https://purl.org/homerent/Apartment1Fridge
+:Apartment1Fridge rdf:type owl:NamedIndividual ,
+                           :Fridge ;
+                  :isFeatureUsageShared "false"^^xsd:boolean .
+
+
+###  https://purl.org/homerent/Apartment1Garden
+:Apartment1Garden rdf:type owl:NamedIndividual ,
+                           :Garden ;
+                  :isFeatureUsageShared "true"^^xsd:boolean .
+
+
+###  https://purl.org/homerent/Apartment1Kitchen
+:Apartment1Kitchen rdf:type owl:NamedIndividual ,
+                            :Kitchen ;
+                   :isFeatureUsageShared "false"^^xsd:boolean .
+
+
+###  https://purl.org/homerent/Apartment1Occupancy
+:Apartment1Occupancy rdf:type owl:NamedIndividual ;
+                     <http://purl.org/goodrelations/v1#hasMaxValueInteger> 6 .
+
+
+###  https://purl.org/homerent/Apartment1Photo1
+:Apartment1Photo1 rdf:type owl:NamedIndividual ;
+                  schema:contentUrl "https://example.com/photo1233" .
+
+
+###  https://purl.org/homerent/Apartment1PlanPhoto
+:Apartment1PlanPhoto rdf:type owl:NamedIndividual ;
+                     schema:contentUrl "https://example.com/photo1" .
+
+
+###  https://purl.org/homerent/ArchaeologicalMuseumCesena
+:ArchaeologicalMuseumCesena rdf:type owl:NamedIndividual ,
+                                     schema:Museum ;
+                            schema:address :ArchaeologicalMuseumCesenaAddress .
+
+
+###  https://purl.org/homerent/ArchaeologicalMuseumCesenaAddress
+:ArchaeologicalMuseumCesenaAddress rdf:type owl:NamedIndividual ;
+                                   schema:addressCountry "ITA" ;
+                                   schema:addressLocality "Cesena" ;
+                                   schema:postalCode "47521" ;
+                                   schema:streetAddress "Via Montalti" .
+
+
+###  https://purl.org/homerent/BusStop2508
+:BusStop2508 rdf:type owl:NamedIndividual ;
+             :busLine "41" ,
+                      "6" .
+
+
+###  https://purl.org/homerent/BusStopTrainStationCesena
+:BusStopTrainStationCesena rdf:type owl:NamedIndividual ,
+                                    schema:BusStop ;
+                           schema:address :BusStopTrainStationCesenaAddress ;
+                           :busLine "11" ,
+                                    "3" ,
+                                    "6" .
+
+
+###  https://purl.org/homerent/BusStopTrainStationCesenaAddress
+:BusStopTrainStationCesenaAddress rdf:type owl:NamedIndividual ;
+                                  schema:addressCountry "ITA" ;
+                                  schema:addressLocality "Cesena" ;
+                                  schema:postalCode "47521" ;
+                                  schema:streetAddress "P.za Sanguinetti" .
+
+
+###  https://purl.org/homerent/BusStopUniversityPaveseCesena
+:BusStopUniversityPaveseCesena rdf:type owl:NamedIndividual ,
+                                        schema:BusStop ;
+                               schema:address :BusStopUniversityPaveseCesenaAddress ;
+                               :busLine "6" .
+
+
+###  https://purl.org/homerent/BusStopUniversityPaveseCesenaAddress
+:BusStopUniversityPaveseCesenaAddress rdf:type owl:NamedIndividual ;
+                                      schema:addressCountry "ITA" ;
+                                      schema:addressLocality "Cesena" ;
+                                      schema:postalCode "47522" ;
+                                      schema:streetAddress "Via Cesare Pavese" .
+
+
+###  https://purl.org/homerent/BusStopUniversitySabaCesena
+:BusStopUniversitySabaCesena rdf:type owl:NamedIndividual ,
+                                      schema:BusStop ;
+                             schema:address :BusStopUniversitySabaCesenaAddress ;
+                             :busLine "6" .
+
+
+###  https://purl.org/homerent/BusStopUniversitySabaCesenaAddress
+:BusStopUniversitySabaCesenaAddress rdf:type owl:NamedIndividual ;
+                                    schema:addressCountry "ITA" ;
+                                    schema:addressLocality "Cesena" ;
+                                    schema:postalCode "47521" ;
+                                    schema:streetAddress "Via Umberto Saba" .
+
+
 ###  https://purl.org/homerent/CeramicFloor
 :CeramicFloor rdf:type owl:NamedIndividual ,
                        :FloorType ;
               :floorDescription """Ceramic floor tiles are durable, versatile, and aesthetically pleasing flooring materials made from clay and other natural substances.
 They come in a variety of colors, patterns, and textures, allowing for numerous design options to suit different styles and preferences.
 Ceramic tiles are highly resistant to wear, moisture, and stains, making them suitable for high-traffic areas and easy to maintain with regular cleaning."""@en .
+
+
+###  https://purl.org/homerent/CesenaTrainStation
+:CesenaTrainStation rdf:type owl:NamedIndividual ,
+                             schema:TrainStation ;
+                    schema:address :CesenaTrainStationAddress .
+
+
+###  https://purl.org/homerent/CesenaTrainStationAddress
+:CesenaTrainStationAddress rdf:type owl:NamedIndividual ;
+                           schema:addressCountry "ITA" ;
+                           schema:addressLocality "Cesena" ;
+                           schema:postalCode "47521" ;
+                           schema:streetAddress "P.za Sanguinetti" .
+
+
+###  https://purl.org/homerent/CoopCesena
+:CoopCesena rdf:type owl:NamedIndividual ,
+                     :Supermarket ;
+            schema:address :CoopCesenaAddress .
+
+
+###  https://purl.org/homerent/CoopCesenaAddress
+:CoopCesenaAddress rdf:type owl:NamedIndividual ;
+                   schema:addressCountry "ITA" ;
+                   schema:addressLocality "Cesena" ;
+                   schema:postalCode "47522" ;
+                   schema:streetAddress "Via Arturo Carlo Jemolo 110" .
+
+
+###  https://purl.org/homerent/HospitalBufaliniCesena
+:HospitalBufaliniCesena rdf:type owl:NamedIndividual ,
+                                 schema:Hospital ;
+                        schema:address :HospitalBufaliniCesenaAddress .
+
+
+###  https://purl.org/homerent/HospitalBufaliniCesenaAddress
+:HospitalBufaliniCesenaAddress rdf:type owl:NamedIndividual ;
+                               schema:addressCountry "ITA" ;
+                               schema:addressLocality "Cesena" ;
+                               schema:postalCode "47521" ;
+                               schema:streetAddress "Viale Giovanni Ghirotti, 286" .
 
 
 ###  https://purl.org/homerent/LaminateFloor
@@ -1302,6 +1534,54 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
             :floorDescription """Resin flooring is a type of flooring made from epoxy resin or polyurethane resin.
 It is durable, water-resistant, and chemical-resistant, making it a good choice for high-traffic areas.
 Resin flooring is available in a variety of colors, patterns, and textures, making it a versatile option for any home."""@en .
+
+
+###  https://purl.org/homerent/ScooterSharingCesena
+:ScooterSharingCesena rdf:type owl:NamedIndividual ,
+                               :ScooterSharing ;
+                      schema:legalName "Scooter sharing company XYZ" .
+
+
+###  https://purl.org/homerent/StrategicPointBusStop2508Apartment1
+:StrategicPointBusStop2508Apartment1 rdf:type owl:NamedIndividual ;
+                                     :strategicPointRefersTo :BusStop2508 ;
+                                     :distanceInKm "0.4"^^xsd:float .
+
+
+###  https://purl.org/homerent/StrategicPointSupermarketApartment1
+:StrategicPointSupermarketApartment1 rdf:type owl:NamedIndividual ;
+                                     :strategicPointRefersTo :CoopCesena ;
+                                     :distanceInKm "1.0"^^xsd:float .
+
+
+###  https://purl.org/homerent/StrategicPointTrainStationApartment1
+:StrategicPointTrainStationApartment1 rdf:type owl:NamedIndividual ;
+                                      :strategicPointRefersTo :CesenaTrainStation ;
+                                      :distanceInKm "2.1"^^xsd:float .
+
+
+###  https://purl.org/homerent/StrategicPointUniversityApartment1
+:StrategicPointUniversityApartment1 rdf:type owl:NamedIndividual ;
+                                    :strategicPointRefersTo :UniversityCesena ;
+                                    :distanceInKm "1.2"^^xsd:float .
+
+
+###  https://purl.org/homerent/UniversityCesena
+:UniversityCesena rdf:type owl:NamedIndividual ,
+                           schema:CollegeOrUniversity ;
+                  schema:address :UniversityCesenaAddress .
+
+
+###  https://purl.org/homerent/UniversityCesenaAddress
+:UniversityCesenaAddress rdf:type owl:NamedIndividual ;
+                         schema:addressCountry "ITA" ;
+                         schema:addressLocality "Cesena" ;
+                         schema:postalCode "47521" ;
+                         schema:streetAddress "Via Cesare Pavese, 50" .
+
+
+###  https://sws.geonames.org/3178957/
+<https://sws.geonames.org/3178957/> rdf:type owl:NamedIndividual .
 
 
 #################################################################
