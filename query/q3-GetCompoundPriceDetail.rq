@@ -1,0 +1,12 @@
+PREFIX : <https://purl.org/homerent/>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT DISTINCT ?name ?serviceDescription ?value ?currency ?periodicity 
+WHERE {
+    :RentalAdApartment1 :hasExpense ?unitPrice .
+    ?unitPrice gr:hasCurrency ?currency ;
+               gr:hasCurrencyValue ?value ;
+               gr:hasUnitOfMeasurement ?periodicity .
+    OPTIONAL { ?unitPrice gr:name ?name . }
+    OPTIONAL { ?unitPrice :serviceDescription ?serviceDescription . }
+}
