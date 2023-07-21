@@ -1065,6 +1065,9 @@ foaf:Person rdf:type owl:Class .
                                     owl:onProperty :interestDateTime ;
                                     owl:someValuesFrom xsd:dateTime
                                   ] ;
+                  owl:hasKey ( :isOfInterestTo
+                               :refersRentAd
+                             ) ;
                   rdfs:comment "Questa classe modella l'interesse in un annuncio di un affitto."@it ,
                                "This class models the interest in a rent ad."@en ;
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
