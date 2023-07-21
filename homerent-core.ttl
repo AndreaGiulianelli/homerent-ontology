@@ -1540,6 +1540,7 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
                          gr:hasCurrency "EUR" ;
                          gr:hasCurrencyValue "40.0"^^xsd:float ;
                          gr:hasUnitOfMeasurement "MON" ;
+                         gr:name "internet"@it ;
                          :serviceDescription "Prezzo per internet"@it .
 
 
