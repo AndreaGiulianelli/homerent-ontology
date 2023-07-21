@@ -1,6 +1,7 @@
 @prefix : <https://purl.org/homerent/> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix gn: <https://www.geonames.org/ontology#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -68,11 +69,11 @@ foaf:surname rdf:type owl:AnnotationProperty .
 #################################################################
 
 ###  http://purl.org/goodrelations/v1#includes
-<http://purl.org/goodrelations/v1#includes> owl:inverseOf :isApartmentIncluded .
+gr:includes owl:inverseOf :isApartmentIncluded .
 
 
 ###  http://purl.org/goodrelations/v1#offers
-<http://purl.org/goodrelations/v1#offers> owl:inverseOf :isOfferedBy .
+gr:offers owl:inverseOf :isOfferedBy .
 
 
 ###  http://schema.org/address
@@ -84,14 +85,14 @@ schema:address rdf:type owl:ObjectProperty ;
 schema:floorSize rdf:type owl:ObjectProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain schema:Apartment ;
-                 rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueFloat> .
+                 rdfs:range gr:QuantitativeValueFloat .
 
 
 ###  http://schema.org/occupancy
 schema:occupancy rdf:type owl:ObjectProperty ,
                           owl:FunctionalProperty ;
                  rdfs:domain schema:Apartment ;
-                 rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueInteger> .
+                 rdfs:range gr:QuantitativeValueInteger .
 
 
 ###  http://schema.org/photo
@@ -136,7 +137,7 @@ schema:photo rdf:type owl:ObjectProperty ;
 
 ###  https://purl.org/homerent/hasExpense
 :hasExpense rdf:type owl:ObjectProperty ;
-            owl:propertyChainAxiom ( <http://purl.org/goodrelations/v1#hasPriceSpecification>
+            owl:propertyChainAxiom ( gr:hasPriceSpecification
                                      :priceComponent
                                    ) ;
             rdfs:comment "Questa proprietà lega l'appartamento alle sue spese."@it ,
@@ -224,7 +225,7 @@ schema:photo rdf:type owl:ObjectProperty ;
 ###  https://purl.org/homerent/isAvailableFor
 :isAvailableFor rdf:type owl:ObjectProperty ;
                 rdfs:domain schema:Apartment ;
-                rdfs:range <http://purl.org/goodrelations/v1#QuantitativeValueFloat> ;
+                rdfs:range gr:QuantitativeValueFloat ;
                 rdfs:comment "Questa proprietà permette di specificare per quanto tempo l'appartamento è disponibile."@it ,
                              "This property allows you to specify how long the apartment is available."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -270,7 +271,7 @@ schema:photo rdf:type owl:ObjectProperty ;
 ###  https://purl.org/homerent/priceComponent
 :priceComponent rdf:type owl:ObjectProperty ;
                 rdfs:domain :CompoundPrice ;
-                rdfs:range <http://purl.org/goodrelations/v1#UnitPriceSpecification> ;
+                rdfs:range gr:UnitPriceSpecification ;
                 rdfs:comment "Questa proprietà permette di specificare i componenti del prezzo."@it ,
                              "This property allows to specify the price components."@en ;
                 rdfs:isDefinedBy <https://purl.org/homerent/> ;
@@ -551,35 +552,35 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
 #################################################################
 
 ###  http://purl.org/goodrelations/v1#UnitPriceSpecification
-<http://purl.org/goodrelations/v1#UnitPriceSpecification> owl:equivalentClass [ rdf:type owl:Class ;
-                                                                                owl:unionOf ( :ElectricityPrice
-                                                                                              :HeatingPrice
-                                                                                              :RentalPrice
-                                                                                              :ServicePrice
-                                                                                              :WaterPrice
-                                                                                            )
-                                                                              ] ;
-                                                          rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://purl.org/goodrelations/v1#hasCurrency> ;
-                                                                            owl:someValuesFrom xsd:string
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://purl.org/goodrelations/v1#hasCurrencyValue> ;
-                                                                            owl:someValuesFrom xsd:float
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> ;
-                                                                            owl:someValuesFrom xsd:string
-                                                                          ] ,
-                                                                          [ rdf:type owl:Restriction ;
-                                                                            owl:onProperty <http://purl.org/goodrelations/v1#name> ;
-                                                                            owl:someValuesFrom rdfs:Literal
-                                                                          ] .
+gr:UnitPriceSpecification owl:equivalentClass [ rdf:type owl:Class ;
+                                                owl:unionOf ( :ElectricityPrice
+                                                              :HeatingPrice
+                                                              :RentalPrice
+                                                              :ServicePrice
+                                                              :WaterPrice
+                                                            )
+                                              ] ;
+                          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                            owl:onProperty gr:hasCurrency ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty gr:hasCurrencyValue ;
+                                            owl:someValuesFrom xsd:float
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty gr:hasUnitOfMeasurement ;
+                                            owl:someValuesFrom xsd:string
+                                          ] ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty gr:name ;
+                                            owl:someValuesFrom rdfs:Literal
+                                          ] .
 
 
 ###  http://schema.org/Apartment
 schema:Apartment rdf:type owl:Class ;
-                 rdfs:subClassOf <http://purl.org/goodrelations/v1#ProductOrService> ,
+                 rdfs:subClassOf gr:ProductOrService ,
                                  [ rdf:type owl:Restriction ;
                                    owl:onProperty :isAvailableFrom ;
                                    owl:someValuesFrom xsd:dateTime
@@ -747,11 +748,11 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/CompoundPrice
 :CompoundPrice rdf:type owl:Class ;
-               rdfs:subClassOf <http://purl.org/goodrelations/v1#PriceSpecification> ,
+               rdfs:subClassOf gr:PriceSpecification ,
                                :HomeRentEntity ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :priceComponent ;
-                                 owl:allValuesFrom <http://purl.org/goodrelations/v1#UnitPriceSpecification>
+                                 owl:allValuesFrom gr:UnitPriceSpecification
                                ] ;
                rdfs:comment "A compound price specification is one that bundles multiple prices that all apply in combination for different dimensions of consumption."@en ,
                             "Una specifica di prezzo composto è quella che raggruppa più prezzi che si applicano tutti in combinazione per diverse dimensioni di consumo."@it ;
@@ -803,7 +804,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/ElectricityPrice
 :ElectricityPrice rdf:type owl:Class ;
-                  rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+                  rdfs:subClassOf gr:UnitPriceSpecification ,
                                   :HomeRentEntity ;
                   rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'elettricità."@it ,
                                "This unit price specification describe the price for the electricity."@en ;
@@ -897,7 +898,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/HeatingPrice
 :HeatingPrice rdf:type owl:Class ;
-              rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+              rdfs:subClassOf gr:UnitPriceSpecification ,
                               :HomeRentEntity ;
               rdfs:comment "Questa specifica di prezzo descrive il prezzo per il riscaldamento."@it ,
                            "This unit price specification describe the price for the heating."@en ;
@@ -1015,22 +1016,22 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/RentalAd
 :RentalAd rdf:type owl:Class ;
-          rdfs:subClassOf <http://purl.org/goodrelations/v1#Offering> ,
+          rdfs:subClassOf gr:Offering ,
                           :HomeRentEntity ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :isOfferedBy ;
-                            owl:someValuesFrom <http://purl.org/goodrelations/v1#BusinessEntity>
+                            owl:someValuesFrom gr:BusinessEntity
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://purl.org/goodrelations/v1#includes> ;
+                            owl:onProperty gr:includes ;
                             owl:allValuesFrom schema:Apartment
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://purl.org/goodrelations/v1#hasPriceSpecification> ;
+                            owl:onProperty gr:hasPriceSpecification ;
                             owl:cardinality "1"^^xsd:nonNegativeInteger
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty <http://purl.org/goodrelations/v1#includes> ;
+                            owl:onProperty gr:includes ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass schema:Apartment
                           ] ;
@@ -1068,7 +1069,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/RentalPrice
 :RentalPrice rdf:type owl:Class ;
-             rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+             rdfs:subClassOf gr:UnitPriceSpecification ,
                              :HomeRentEntity ;
              rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'affitto dell'appartamento."@it ,
                           "This unit price specification describe the price for the rent."@en ;
@@ -1099,7 +1100,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/ServicePrice
 :ServicePrice rdf:type owl:Class ;
-              rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+              rdfs:subClassOf gr:UnitPriceSpecification ,
                               :HomeRentEntity ,
                               [ rdf:type owl:Restriction ;
                                 owl:onProperty :serviceDescription ;
@@ -1201,7 +1202,7 @@ foaf:Person rdf:type owl:Class .
                     owl:equivalentClass [ owl:intersectionOf ( schema:Apartment
                                                                [ rdf:type owl:Restriction ;
                                                                  owl:onProperty :isAvailableFor ;
-                                                                 owl:someValuesFrom <http://purl.org/goodrelations/v1#QuantitativeValueFloat>
+                                                                 owl:someValuesFrom gr:QuantitativeValueFloat
                                                                ]
                                                              ) ;
                                           rdf:type owl:Class
@@ -1258,7 +1259,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://purl.org/homerent/WaterPrice
 :WaterPrice rdf:type owl:Class ;
-            rdfs:subClassOf <http://purl.org/goodrelations/v1#UnitPriceSpecification> ,
+            rdfs:subClassOf gr:UnitPriceSpecification ,
                             :HomeRentEntity ;
             rdfs:comment "Questa specifica di prezzo descrive il prezzo per l'acqua."@it ,
                          "This unit price specification describe the price for the water."@en ;
@@ -1277,7 +1278,7 @@ gn:Feature rdf:type owl:Class .
 
 ###  https://purl.org/homerent/AndreaGiulianelli
 :AndreaGiulianelli rdf:type owl:NamedIndividual ;
-                   <http://purl.org/goodrelations/v1#offers> :RentalAdApartment1 ;
+                   gr:offers :RentalAdApartment1 ;
                    schema:birthDate "1999-07-17T00:00:00"^^xsd:dateTime ;
                    schema:email "andrea.giulianelli@example.it" ;
                    schema:familyName "Giulianelli" ;
@@ -1330,14 +1331,14 @@ Al piano primo dispone di quattro camere da letto singole e una matrimoniale, tr
 
 ###  https://purl.org/homerent/Apartment1Availability
 :Apartment1Availability rdf:type owl:NamedIndividual ;
-                        <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
-                        <http://purl.org/goodrelations/v1#hasValueFloat> "5.0"^^xsd:float .
+                        gr:hasUnitOfMeasurement "MON" ;
+                        gr:hasValueFloat "5.0"^^xsd:float .
 
 
 ###  https://purl.org/homerent/Apartment1FloorSize
 :Apartment1FloorSize rdf:type owl:NamedIndividual ;
-                     <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MTK" ;
-                     <http://purl.org/goodrelations/v1#hasValueFloat> "180.0"^^xsd:float .
+                     gr:hasUnitOfMeasurement "MTK" ;
+                     gr:hasValueFloat "180.0"^^xsd:float .
 
 
 ###  https://purl.org/homerent/Apartment1Fridge
@@ -1360,7 +1361,7 @@ Al piano primo dispone di quattro camere da letto singole e una matrimoniale, tr
 
 ###  https://purl.org/homerent/Apartment1Occupancy
 :Apartment1Occupancy rdf:type owl:NamedIndividual ;
-                     <http://purl.org/goodrelations/v1#hasMaxValueInteger> 6 .
+                     gr:hasMaxValueInteger 6 .
 
 
 ###  https://purl.org/homerent/Apartment1Photo1
@@ -1495,8 +1496,8 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
 ###  https://purl.org/homerent/ExampleCompany
 :ExampleCompany rdf:type owl:NamedIndividual ,
                          schema:Organization ;
-                <http://purl.org/goodrelations/v1#offers> :RentalAdApartment2 ;
-                <http://purl.org/goodrelations/v1#legalName> "Example company" ;
+                gr:offers :RentalAdApartment2 ;
+                gr:legalName "Example company" ;
                 schema:email "company@examplecompany.it" .
 
 
@@ -1531,9 +1532,9 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
 ###  https://purl.org/homerent/InternetPriceApartment1
 :InternetPriceApartment1 rdf:type owl:NamedIndividual ,
                                   :ServicePrice ;
-                         <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
-                         <http://purl.org/goodrelations/v1#hasCurrencyValue> "40.0"^^xsd:float ;
-                         <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
+                         gr:hasCurrency "EUR" ;
+                         gr:hasCurrencyValue "40.0"^^xsd:float ;
+                         gr:hasUnitOfMeasurement "MON" ;
                          :serviceDescription "Prezzo per internet"@it .
 
 
@@ -1582,9 +1583,9 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
 
 ###  https://purl.org/homerent/RentalAdApartment1
 :RentalAdApartment1 rdf:type owl:NamedIndividual ;
-                    <http://purl.org/goodrelations/v1#hasPriceSpecification> :RentalAdApartment1CoumpoundPrice ;
-                    <http://purl.org/goodrelations/v1#includes> :Apartment1 ;
-                    <http://purl.org/goodrelations/v1#validFrom> "2023-07-21T11:10:00"^^xsd:dateTime ;
+                    gr:hasPriceSpecification :RentalAdApartment1CoumpoundPrice ;
+                    gr:includes :Apartment1 ;
+                    gr:validFrom "2023-07-21T11:10:00"^^xsd:dateTime ;
                     :rentAdCode "303333234934023423" .
 
 
@@ -1607,8 +1608,8 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
 
 ###  https://purl.org/homerent/RentalAdApartment2
 :RentalAdApartment2 rdf:type owl:NamedIndividual ;
-                    <http://purl.org/goodrelations/v1#hasPriceSpecification> :RentalAdApartment2CompoundPrice ;
-                    <http://purl.org/goodrelations/v1#includes> :Apartment2 ;
+                    gr:hasPriceSpecification :RentalAdApartment2CompoundPrice ;
+                    gr:includes :Apartment2 ;
                     :rentAdCode "3242443543543545465" .
 
 
@@ -1655,19 +1656,19 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
 ###  https://purl.org/homerent/RentalPriceApartment1
 :RentalPriceApartment1 rdf:type owl:NamedIndividual ,
                                 :RentalPrice ;
-                       <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
-                       <http://purl.org/goodrelations/v1#hasCurrencyValue> "937.0"^^xsd:float ;
-                       <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
-                       <http://purl.org/goodrelations/v1#name> "affitto"@it .
+                       gr:hasCurrency "EUR" ;
+                       gr:hasCurrencyValue "937.0"^^xsd:float ;
+                       gr:hasUnitOfMeasurement "MON" ;
+                       gr:name "affitto"@it .
 
 
 ###  https://purl.org/homerent/RentalPriceApartment2
 :RentalPriceApartment2 rdf:type owl:NamedIndividual ,
                                 :RentalPrice ;
-                       <http://purl.org/goodrelations/v1#hasCurrency> "EUR" ;
-                       <http://purl.org/goodrelations/v1#hasCurrencyValue> "700.0"^^xsd:float ;
-                       <http://purl.org/goodrelations/v1#hasUnitOfMeasurement> "MON" ;
-                       <http://purl.org/goodrelations/v1#name> "affitto"@it .
+                       gr:hasCurrency "EUR" ;
+                       gr:hasCurrencyValue "700.0"^^xsd:float ;
+                       gr:hasUnitOfMeasurement "MON" ;
+                       gr:name "affitto"@it .
 
 
 ###  https://purl.org/homerent/ResinFloor
@@ -1681,7 +1682,7 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 ###  https://purl.org/homerent/ScooterSharingCesena
 :ScooterSharingCesena rdf:type owl:NamedIndividual ,
                                :ScooterSharing ;
-                      <http://purl.org/goodrelations/v1#legalName> "Scooter Sharing Company XYZ" .
+                      gr:legalName "Scooter Sharing Company XYZ" .
 
 
 ###  https://purl.org/homerent/StrategicPointArcheologicalMuseumApartment1
@@ -1814,52 +1815,52 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 
 
 [ rdf:type owl:AllDifferent ;
-  owl:distinctMembers ( <http://purl.org/goodrelations/v1#AmericanExpress>
-                        <http://purl.org/goodrelations/v1#Business>
-                        <http://purl.org/goodrelations/v1#Buy>
-                        <http://purl.org/goodrelations/v1#ByBankTransferInAdvance>
-                        <http://purl.org/goodrelations/v1#ByInvoice>
-                        <http://purl.org/goodrelations/v1#COD>
-                        <http://purl.org/goodrelations/v1#Cash>
-                        <http://purl.org/goodrelations/v1#CheckInAdvance>
-                        <http://purl.org/goodrelations/v1#ConstructionInstallation>
-                        <http://purl.org/goodrelations/v1#DHL>
-                        <http://purl.org/goodrelations/v1#DeliveryModeDirectDownload>
-                        <http://purl.org/goodrelations/v1#DeliveryModeFreight>
-                        <http://purl.org/goodrelations/v1#DeliveryModeMail>
-                        <http://purl.org/goodrelations/v1#DeliveryModeOwnFleet>
-                        <http://purl.org/goodrelations/v1#DeliveryModePickUp>
-                        <http://purl.org/goodrelations/v1#DinersClub>
-                        <http://purl.org/goodrelations/v1#DirectDebit>
-                        <http://purl.org/goodrelations/v1#Discover>
-                        <http://purl.org/goodrelations/v1#Dispose>
-                        <http://purl.org/goodrelations/v1#Enduser>
-                        <http://purl.org/goodrelations/v1#FederalExpress>
-                        <http://purl.org/goodrelations/v1#Friday>
-                        <http://purl.org/goodrelations/v1#GoogleCheckout>
-                        <http://purl.org/goodrelations/v1#JCB>
-                        <http://purl.org/goodrelations/v1#Labor-BringIn>
-                        <http://purl.org/goodrelations/v1#LeaseOut>
-                        <http://purl.org/goodrelations/v1#Maintain>
-                        <http://purl.org/goodrelations/v1#MasterCard>
-                        <http://purl.org/goodrelations/v1#Monday>
-                        <http://purl.org/goodrelations/v1#PartsAndLabor-BringIn>
-                        <http://purl.org/goodrelations/v1#PartsAndLabor-PickUp>
-                        <http://purl.org/goodrelations/v1#PayPal>
-                        <http://purl.org/goodrelations/v1#PaySwarm>
-                        <http://purl.org/goodrelations/v1#ProvideService>
-                        <http://purl.org/goodrelations/v1#PublicHolidays>
-                        <http://purl.org/goodrelations/v1#PublicInstitution>
-                        <http://purl.org/goodrelations/v1#Repair>
-                        <http://purl.org/goodrelations/v1#Reseller>
-                        <http://purl.org/goodrelations/v1#Saturday>
-                        <http://purl.org/goodrelations/v1#Sell>
-                        <http://purl.org/goodrelations/v1#Sunday>
-                        <http://purl.org/goodrelations/v1#Thursday>
-                        <http://purl.org/goodrelations/v1#Tuesday>
-                        <http://purl.org/goodrelations/v1#UPS>
-                        <http://purl.org/goodrelations/v1#VISA>
-                        <http://purl.org/goodrelations/v1#Wednesday>
+  owl:distinctMembers ( gr:AmericanExpress
+                        gr:Business
+                        gr:Buy
+                        gr:ByBankTransferInAdvance
+                        gr:ByInvoice
+                        gr:COD
+                        gr:Cash
+                        gr:CheckInAdvance
+                        gr:ConstructionInstallation
+                        gr:DHL
+                        gr:DeliveryModeDirectDownload
+                        gr:DeliveryModeFreight
+                        gr:DeliveryModeMail
+                        gr:DeliveryModeOwnFleet
+                        gr:DeliveryModePickUp
+                        gr:DinersClub
+                        gr:DirectDebit
+                        gr:Discover
+                        gr:Dispose
+                        gr:Enduser
+                        gr:FederalExpress
+                        gr:Friday
+                        gr:GoogleCheckout
+                        gr:JCB
+                        gr:Labor-BringIn
+                        gr:LeaseOut
+                        gr:Maintain
+                        gr:MasterCard
+                        gr:Monday
+                        gr:PartsAndLabor-BringIn
+                        gr:PartsAndLabor-PickUp
+                        gr:PayPal
+                        gr:PaySwarm
+                        gr:ProvideService
+                        gr:PublicHolidays
+                        gr:PublicInstitution
+                        gr:Repair
+                        gr:Reseller
+                        gr:Saturday
+                        gr:Sell
+                        gr:Sunday
+                        gr:Thursday
+                        gr:Tuesday
+                        gr:UPS
+                        gr:VISA
+                        gr:Wednesday
                         :AndreaGiulianelli
                         :Apartment1
                         :Apartment1Address
