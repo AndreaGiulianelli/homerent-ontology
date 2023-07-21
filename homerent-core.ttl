@@ -1610,6 +1610,7 @@ PVC flooring is available in a variety of colors, patterns, and textures, making
 :RentalAdApartment2 rdf:type owl:NamedIndividual ;
                     gr:hasPriceSpecification :RentalAdApartment2CompoundPrice ;
                     gr:includes :Apartment2 ;
+                    gr:validFrom "2023-07-10T10:00:00"^^xsd:dateTime ;
                     :rentAdCode "3242443543543545465" .
 
 
