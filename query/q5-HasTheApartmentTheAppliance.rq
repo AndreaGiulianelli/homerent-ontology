@@ -1,0 +1,7 @@
+PREFIX : <https://purl.org/homerent/>
+
+ASK
+WHERE {
+    :Apartment1 :hasAppliance ?appliance .
+    ?appliance a :AirConditioner .
+}
