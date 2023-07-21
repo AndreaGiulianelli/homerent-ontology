@@ -1,0 +1,15 @@
+PREFIX : <https://purl.org/homerent/>
+PREFIX schema: <http://schema.org/>
+PREFIX gr: <http://purl.org/goodrelations/v1#>
+
+SELECT ?rentalAd ?rentalAdId (COUNT(?interest) AS ?interestCount)
+WHERE {
+    ?rentalAd :rentAdCode ?rentalAdId ;
+            gr:includes ?apartment ;
+            :hasGeneratedInterest ?interest .
+    ?apartment schema:address ?address .
+    ?address :geoName <https://sws.geonames.org/3178957/> .
+}
+GROUP BY ?rentalAd ?rentalAdId
+ORDER BY DESC(?interestCount)
+LIMIT 1
