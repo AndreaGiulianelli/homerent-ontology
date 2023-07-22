@@ -1094,7 +1094,7 @@ foaf:Person rdf:type owl:Class .
                                :refersRentAd
                              ) ;
                   rdfs:comment "Questa classe modella l'interesse in un annuncio di un affitto."@it ,
-                               "This class models the interest in a rent ad."@en ;
+                               "This class models the interest in a rental ad."@en ;
                   rdfs:isDefinedBy <https://purl.org/homerent/> ;
                   rdfs:label "Interesse in un annuncio di affitto"@it ,
                              "Rental Ad Interest"@en .
