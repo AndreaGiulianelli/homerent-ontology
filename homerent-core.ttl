@@ -1990,8 +1990,6 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
 
 :readyToLive rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
-:availability rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
-
 :feature rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 :nRooms rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
@@ -2171,10 +2169,9 @@ Resin flooring is available in a variety of colors, patterns, and textures, maki
                                                                                                                                                                                                      ]
                                                                                                                                                         ] ;
                                                                                                                                               rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#propertyPredicate> :isAvailableFor ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :apartment ;
-                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument2> :availability
+                                                                                                                                                         rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#classPredicate> :TemporaryApartment ;
+                                                                                                                                                                     <http://www.w3.org/2003/11/swrl#argument1> :apartment
                                                                                                                                                                    ] ;
                                                                                                                                                          rdf:rest rdf:nil
                                                                                                                                                        ]
