@@ -4,28 +4,29 @@ PREFIX gr: <http://purl.org/goodrelations/v1#>
 
 SELECT ?availableFrom ?readyToLive ?furnished ?minAvailabilityValue ?maxAvailabilityValue ?availabilityUnit ?builtIn ?lastRenovationYear ?floor ?rooms ?description
        ?floorType
-       (CONCAT(?streetAddress, ", ", ?postalCode, ", ", ?locality, " - ", ?country) AS ?address)
+       (CONCAT(?streetAddress, ", ", ?postalCode, ", ", ?locality, ", ", ?country) AS ?address)
 WHERE {
-    :Apartment1 :isAvailableFrom ?availableFrom ;
+    ?apartment :isAvailableFrom ?availableFrom ;
                 :isReadyToLive ?readyToLive ;
                 :isFurnished ?furnished .
     OPTIONAL {
-        :Apartment1 :isAvailableFor ?availability .
+        ?apartment :isAvailableFor ?availability .
         ?availability gr:hasUnitOfMeasurement ?availabilityUnit.
         OPTIONAL { ?availability gr:hasMinValueFloat ?minAvailabilityValue . }
         OPTIONAL { ?availability gr:hasMaxValueFloat ?maxAvailabilityValue . }
     }
-    OPTIONAL { :Apartment1 schema:yearBuilt ?builtIn . }
-    OPTIONAL { :Apartment1 :lastRenovationYear ?lastRenovationYear . }
-    OPTIONAL { :Apartment1 schema:floorLevel ?floor . }
-    OPTIONAL { :Apartment1 schema:numberOfRooms ?rooms . }
-    OPTIONAL { :Apartment1 schema:description ?description . }
-    OPTIONAL { :Apartment1 :hasFloorType ?floorType . }
+    OPTIONAL { ?apartment schema:yearBuilt ?builtIn . }
+    OPTIONAL { ?apartment :lastRenovationYear ?lastRenovationYear . }
+    OPTIONAL { ?apartment schema:floorLevel ?floor . }
+    OPTIONAL { ?apartment schema:numberOfRooms ?rooms . }
+    OPTIONAL { ?apartment schema:description ?description . }
+    OPTIONAL { ?apartment :hasFloorType ?floorType . }
     OPTIONAL {
-        :Apartment1 schema:address ?apartmentAddress .
+        ?apartment schema:address ?apartmentAddress .
         ?apartmentAddress schema:addressCountry ?country ;
                  schema:addressLocality ?locality ;
                  schema:postalCode ?postalCode ;
                  schema:streetAddress ?streetAddress .
     }
+    FILTER (?apartment = :Apartment1)
 }

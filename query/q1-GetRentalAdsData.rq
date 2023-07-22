@@ -4,8 +4,8 @@ PREFIX gr: <http://purl.org/goodrelations/v1#>
 SELECT ?rentalAd ?rentalAdId ?publicationDateTime ?offeredBy ?apartment (COUNT(?interest) AS ?interestedPeople)
 WHERE {
     ?rentalAd :rentAdCode ?rentalAdId ;
-            gr:includes ?apartment ;
-            :isOfferedBy ?offeredBy .
+              gr:includes ?apartment ;
+              :isOfferedBy ?offeredBy .
     OPTIONAL {
         ?rentalAd gr:validFrom ?publicationDateTime .
     }

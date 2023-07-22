@@ -1,7 +1,7 @@
 PREFIX : <https://purl.org/homerent/>
 PREFIX gr: <http://purl.org/goodrelations/v1#>
 
-SELECT ?rentalAd ?rentalAd ?apartment
+SELECT ?rentalAd ?rentAdCode ?apartment
 WHERE {
     ?rentalAd gr:includes ?apartment ;
               :rentAdCode ?rentAdCode .
