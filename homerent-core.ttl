@@ -138,7 +138,7 @@ schema:photo rdf:type owl:ObjectProperty ;
               rdfs:range :Appliance ;
               owl:propertyDisjointWith :hasService ;
               rdfs:comment "Questa proprietà permette di mettere in relazione l'appartamento con gli elettrodomestici presenti al suo interno."@it ,
-                           "This property allows to link an apartment to the appliance inside it."@en ;
+                           "This property allows to link an apartment to the appliances inside it."@en ;
               rdfs:isDefinedBy <https://purl.org/homerent/> ;
               rdfs:label "ha elettrodomestico"@it ,
                          "has appliance"@en .
@@ -149,8 +149,8 @@ schema:photo rdf:type owl:ObjectProperty ;
             owl:propertyChainAxiom ( gr:hasPriceSpecification
                                      :priceComponent
                                    ) ;
-            rdfs:comment "Questa proprietà lega l'appartamento alle sue spese."@it ,
-                         "This property links the apartment to its expenses."@en ;
+            rdfs:comment "Questa proprietà lega l'annuncio di affitto alle sue spese."@it ,
+                         "This property links the rental ad to its expenses."@en ;
             rdfs:isDefinedBy <https://purl.org/homerent/> ;
             rdfs:label "ha spesa"@it ,
                        "has expense"@en .
