@@ -1054,21 +1054,16 @@ foaf:Person rdf:type owl:Class .
           rdfs:subClassOf gr:Offering ,
                           :HomeRentEntity ,
                           [ rdf:type owl:Restriction ;
+                            owl:onProperty gr:includes ;
+                            owl:someValuesFrom schema:Apartment
+                          ] ,
+                          [ rdf:type owl:Restriction ;
                             owl:onProperty :isOfferedBy ;
                             owl:someValuesFrom gr:BusinessEntity
                           ] ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty gr:includes ;
-                            owl:allValuesFrom schema:Apartment
-                          ] ,
-                          [ rdf:type owl:Restriction ;
                             owl:onProperty gr:hasPriceSpecification ;
                             owl:cardinality "1"^^xsd:nonNegativeInteger
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty gr:includes ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass schema:Apartment
                           ] ;
           owl:hasKey ( :rentAdCode
                      ) ;
