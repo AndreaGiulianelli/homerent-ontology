@@ -326,6 +326,18 @@ schema:photo rdf:type owl:ObjectProperty ;
 #    Data properties
 #################################################################
 
+###  http://purl.org/goodrelations/v1#hasCurrency
+gr:hasCurrency rdf:type owl:FunctionalProperty .
+
+
+###  http://purl.org/goodrelations/v1#hasCurrencyValue
+gr:hasCurrencyValue rdf:type owl:FunctionalProperty .
+
+
+###  http://purl.org/goodrelations/v1#hasUnitOfMeasurement
+gr:hasUnitOfMeasurement rdf:type owl:FunctionalProperty .
+
+
 ###  http://purl.org/goodrelations/v1#validFrom
 gr:validFrom rdf:type owl:FunctionalProperty .
 
@@ -705,7 +717,12 @@ foaf:Person rdf:type owl:Class .
                                                                  ) ;
                                               rdf:type owl:Class
                                             ] ;
-                        rdfs:subClassOf :HomeRentEntity .
+                        rdfs:subClassOf :HomeRentEntity ;
+                        rdfs:comment "Questa classe descrive un appartamento vicino ai mezzi di trasporto. In particolare ha una sorta di trasporto (trasporto pubblico o mobilità condivisa) che si trova al massimo a 5 km."@it ,
+                                     "This class describes an apartment that is near to transports. In particular it has some sort of transport (public transport or shared mobility) that is at a maximum of 5 km."@en ;
+                        rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                        rdfs:label "Apartment near transport"@en ,
+                                   "Appartamento vicino ai trasporti"@it .
 
 
 ###  https://purl.org/homerent/Appliance
