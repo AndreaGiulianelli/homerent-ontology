@@ -438,7 +438,8 @@ schema:telephone rdf:type owl:DatatypeProperty ;
 
 
 ###  http://schema.org/yearBuilt
-schema:yearBuilt rdf:type owl:DatatypeProperty ;
+schema:yearBuilt rdf:type owl:DatatypeProperty ,
+                          owl:FunctionalProperty ;
                  rdfs:domain schema:Apartment ;
                  rdfs:range xsd:integer .
 
@@ -523,7 +524,7 @@ schema:yearBuilt rdf:type owl:DatatypeProperty ;
                           "This property indicates if an apartment is furnished."@en ;
              rdfs:isDefinedBy <https://purl.org/homerent/> ;
              rdfs:label "is furnished"@en ,
-                        "è arredata"@it .
+                        "è arredato"@it .
 
 
 ###  https://purl.org/homerent/isReadyToLive
