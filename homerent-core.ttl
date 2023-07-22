@@ -954,7 +954,12 @@ foaf:Person rdf:type owl:Class .
                                                                 ) ;
                                              rdf:type owl:Class
                                            ] ;
-                       rdfs:subClassOf :HomeRentEntity .
+                       rdfs:subClassOf :HomeRentEntity ;
+                       rdfs:comment "Questa classe modella un appartamento ritenuto interessante per almeno 5 persone."@it ,
+                                    "This class models an apartment that is interesting for at least 5 people."@en ;
+                       rdfs:isDefinedBy <https://purl.org/homerent/> ;
+                       rdfs:label "Appartmento ad alto interesse"@it ,
+                                  "High interest apartment"@en .
 
 
 ###  https://purl.org/homerent/HomeRentEntity
