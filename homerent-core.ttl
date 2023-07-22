@@ -65,6 +65,14 @@ foaf:surname rdf:type owl:AnnotationProperty .
 
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#date
+xsd:date rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -346,7 +354,7 @@ schema:addressRegion rdf:type owl:DatatypeProperty ,
 ###  http://schema.org/birthDate
 schema:birthDate rdf:type owl:DatatypeProperty ,
                           owl:FunctionalProperty ;
-                 rdfs:range xsd:dateTime .
+                 rdfs:range xsd:date .
 
 
 ###  http://schema.org/contentUrl
@@ -1287,7 +1295,7 @@ gn:Feature rdf:type owl:Class .
 ###  https://purl.org/homerent/AndreaGiulianelli
 :AndreaGiulianelli rdf:type owl:NamedIndividual ;
                    gr:offers :RentalAdApartment1 ;
-                   schema:birthDate "1999-07-17T00:00:00"^^xsd:dateTime ;
+                   schema:birthDate "1999-07-17"^^xsd:date ;
                    schema:email "andrea.giulianelli@example.it" ;
                    schema:familyName "Giulianelli" ;
                    schema:givenName "Andrea" .
@@ -1572,7 +1580,7 @@ Ceramic tiles are highly resistant to wear, moisture, and stains, making them su
 
 ###  https://purl.org/homerent/MarioRossi
 :MarioRossi rdf:type owl:NamedIndividual ;
-            schema:birthDate "1985-05-13T00:00:00"^^xsd:dateTime ;
+            schema:birthDate "1985-05-13"^^xsd:date ;
             schema:email "mario.rossi@example.com" ;
             schema:familyName "Rossi" ;
             schema:givenName "Rossi" .
