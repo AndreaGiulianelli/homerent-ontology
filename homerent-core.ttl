@@ -223,7 +223,8 @@ schema:photo rdf:type owl:ObjectProperty ;
 
 
 ###  https://purl.org/homerent/isApartmentIncluded
-:isApartmentIncluded rdf:type owl:ObjectProperty ;
+:isApartmentIncluded rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ;
                      rdfs:comment "Questa è la proprietà inversa di gr:includes e modella il fatto che un appartamento è incluso in un annuncio di affitto."@it ,
                                   "This is the inverse property of gr:includes and models the fact that an apartment is included in a rental ad."@en ;
                      rdfs:isDefinedBy <https://purl.org/homerent/> ;
