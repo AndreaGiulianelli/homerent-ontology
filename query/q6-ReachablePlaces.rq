@@ -5,5 +5,5 @@ WHERE {
     :Apartment1 :isPossibleToReach ?strategicPoint .
     ?strategicPoint :distanceInKm ?distance ;
                     :strategicPointRefersTo ?reachablePlace .
-    FILTER (?distance < 5)
+    FILTER (?distance <= 5)
 }
